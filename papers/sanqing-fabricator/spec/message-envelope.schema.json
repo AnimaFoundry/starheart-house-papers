@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AnimaFoundry/starheart-house-papers/raw/main/papers/sanqing-fabricator/spec/message-envelope.schema.json",
+  "title": "Sanqing Fabricator message envelope",
+  "description": "Transport-neutral envelope for proposals, observations, policy decisions, commands, results, and audit-related messages. Schema validity never implies execution authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "message_type",
+    "message_id",
+    "timestamp_utc",
+    "expires_at",
+    "deployment_id",
+    "session_id",
+    "sequence",
+    "issuer",
+    "authorization",
+    "risk_class",
+    "payload",
+    "evidence_class",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "message_type": {"type": "string", "minLength": 1, "maxLength": 128},
+    "message_id": {"type": "string", "format": "uuid"},
+    "correlation_id": {"type": ["string", "null"], "format": "uuid"},
+    "causation_id": {"type": ["string", "null"], "format": "uuid"},
+    "timestamp_utc": {"type": "string", "format": "date-time"},
+    "monotonic_time_ns": {"type": "integer", "minimum": 0},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "deployment_id": {"type": "string", "minLength": 1},
+    "session_id": {"type": "string", "minLength": 1},
+    "sequence": {"type": "integer", "minimum": 0},
+    "issuer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor_type", "actor_id", "software_version", "software_sha256"],
+      "properties": {
+        "actor_type": {"enum": ["human", "agent", "controller", "sensor", "service"]},
+        "actor_id": {"type": "string", "minLength": 1},
+        "software_version": {"type": "string", "minLength": 1},
+        "software_sha256": {"type": "string", "pattern": "^sha256:[a-fA-F0-9]{64}$"}
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_id", "scopes", "safety_envelope_id", "signature"],
+      "properties": {
+        "decision_id": {"type": ["string", "null"]},
+        "scopes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "safety_envelope_id": {"type": ["string", "null"]},
+        "signature": {"type": ["string", "null"]}
+      }
+    },
+    "risk_class": {"enum": ["R0", "R1", "R2", "R3", "R4"]},
+    "payload": {"type": "object"},
+    "preconditions": {"type": "array", "items": {"type": "object"}},
+    "expected_postconditions": {"type": "array", "items": {"type": "object"}},
+    "abort_conditions": {"type": "array", "items": {"type": "object"}},
+    "artifact_hashes": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^sha256:[a-fA-F0-9]{64}$"},
+      "uniqueItems": true
+    },
+    "trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {"type": ["string", "null"]},
+        "model_sha256": {"type": ["string", "null"], "pattern": "^sha256:[a-fA-F0-9]{64}$"},
+        "prompt_or_policy_sha256": {"type": ["string", "null"], "pattern": "^sha256:[a-fA-F0-9]{64}$"}
+      }
+    },
+    "evidence_class": {
+      "enum": ["SYNTHETIC", "SIMULATION_ONLY", "HUMAN_CONTROLLED", "SUPERVISED_AUTONOMY", "HARDWARE_VALIDATED", "PRODUCTION_VALIDATED"]
+    },
+    "synthetic": {"type": "boolean"},
+    "extensions": {"type": "object"}
+  }
+}

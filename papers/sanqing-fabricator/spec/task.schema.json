@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AnimaFoundry/starheart-house-papers/raw/main/papers/sanqing-fabricator/spec/task.schema.json",
+  "title": "Sanqing Fabricator bounded task proposal",
+  "description": "A task proposal is not an authorization. Physical execution requires a separate, valid, scoped human authorization and safety-controller acceptance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "task_version",
+    "intent",
+    "requested_by",
+    "zone_id",
+    "risk_class",
+    "max_autonomy_level",
+    "required_capabilities",
+    "allowed_tools",
+    "forbidden_tools",
+    "preconditions",
+    "success_criteria",
+    "abort_conditions",
+    "status",
+    "evidence_class",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "task_id": {"type": "string", "minLength": 1},
+    "task_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "intent": {"type": "string", "minLength": 1, "maxLength": 1024},
+    "description": {"type": "string", "maxLength": 8192},
+    "requested_by": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor_type", "actor_id"],
+      "properties": {
+        "actor_type": {"enum": ["human", "agent", "service"]},
+        "actor_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "skill_ref": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["skill_id", "version", "sha256"],
+      "properties": {
+        "skill_id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^sha256:[a-fA-F0-9]{64}$"}
+      }
+    },
+    "target_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "zone_id": {"type": "string", "minLength": 1},
+    "priority": {"type": "integer", "minimum": 0, "maximum": 100},
+    "not_before": {"type": ["string", "null"], "format": "date-time"},
+    "deadline": {"type": ["string", "null"], "format": "date-time"},
+    "max_duration_ms": {"type": "integer", "minimum": 1},
+    "required_capabilities": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "required_resources": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "allowed_tools": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "forbidden_tools": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "risk_class": {"enum": ["R0", "R1", "R2", "R3", "R4"]},
+    "max_autonomy_level": {"enum": ["L0", "L1", "L2", "L3", "L4"]},
+    "preconditions": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "success_criteria": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "abort_conditions": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "safety_envelope_ref": {"type": ["string", "null"]},
+    "human_approval_ref": {"type": ["string", "null"]},
+    "input_artifact_refs": {"type": "array", "items": {"type": "string"}},
+    "output_artifact_refs": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["PROPOSED", "VALIDATED", "AUTHORIZED", "QUEUED", "EXECUTING", "COMPLETED", "FAILED", "ABORTED", "PROTECTIVE_STOP"]},
+    "evidence_class": {"enum": ["SYNTHETIC", "SIMULATION_ONLY", "HUMAN_CONTROLLED", "SUPERVISED_AUTONOMY", "HARDWARE_VALIDATED", "PRODUCTION_VALIDATED"]},
+    "synthetic": {"type": "boolean"},
+    "extensions": {"type": "object"}
+  }
+}
+

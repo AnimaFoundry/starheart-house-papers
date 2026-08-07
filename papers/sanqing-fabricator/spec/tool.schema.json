@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AnimaFoundry/starheart-house-papers/raw/main/papers/sanqing-fabricator/spec/tool.schema.json",
+  "title": "Sanqing Fabricator tool record",
+  "description": "Versioned identity, limits, evidence, and authorization for an end effector, fixture, adapter, or other physical tool.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool_id",
+    "tool_version",
+    "name",
+    "category",
+    "intended_functions",
+    "prohibited_uses",
+    "design",
+    "physical",
+    "limits",
+    "hazards",
+    "allowed_tasks",
+    "allowed_zones",
+    "evidence",
+    "authorization",
+    "evidence_class",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "tool_id": {"type": "string", "minLength": 1},
+    "tool_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "name": {"type": "string", "minLength": 1},
+    "category": {"enum": ["gripper", "five_finger_hand", "fixture", "adapter", "guide", "guard", "inspection_tool", "other"]},
+    "intended_functions": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+    "prohibited_uses": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+    "design": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cad_artifact_sha256", "source_artifact_sha256", "generated_by", "design_locked_at"],
+      "properties": {
+        "cad_artifact_sha256": {"type": "string", "pattern": "^sha256:[a-fA-F0-9]{64}$"},
+        "source_artifact_sha256": {"type": "string", "pattern": "^sha256:[a-fA-F0-9]{64}$"},
+        "manufacturing_package_sha256": {"type": ["string", "null"], "pattern": "^sha256:[a-fA-F0-9]{64}$"},
+        "generated_by": {"type": "string", "minLength": 1},
+        "model_or_software_sha256": {"type": ["string", "null"], "pattern": "^sha256:[a-fA-F0-9]{64}$"},
+        "design_locked_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "physical": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["material", "mass_kg", "center_of_mass_m", "geometry_envelope_m", "mounting_interface", "compatible_end_effectors"],
+      "properties": {
+        "material": {"type": "string", "minLength": 1},
+        "material_batch_ref": {"type": ["string", "null"]},
+        "mass_kg": {"type": "number", "exclusiveMinimum": 0},
+        "center_of_mass_m": {
+          "type": "array",
+          "prefixItems": [{"type": "number"}, {"type": "number"}, {"type": "number"}],
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "geometry_envelope_m": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["x", "y", "z"],
+          "properties": {
+            "x": {"type": "number", "exclusiveMinimum": 0},
+            "y": {"type": "number", "exclusiveMinimum": 0},
+            "z": {"type": "number", "exclusiveMinimum": 0}
+          }
+        },
+        "mounting_interface": {"type": "string", "minLength": 1},
+        "compatible_end_effectors": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_force_n", "max_torque_nm", "max_speed_mps", "max_temperature_c", "duty_cycle"],
+      "properties": {
+        "max_force_n": {"type": "number", "minimum": 0},
+        "max_torque_nm": {"type": "number", "minimum": 0},
+        "max_speed_mps": {"type": "number", "minimum": 0},
+        "max_temperature_c": {"type": "number"},
+        "duty_cycle": {"type": "number", "minimum": 0, "maximum": 1},
+        "environmental_limits": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "hazards": {"type": "array", "items": {"type": "string"}},
+    "required_guarding": {"type": "array", "items": {"type": "string"}},
+    "required_ppe": {"type": "array", "items": {"type": "string"}},
+    "allowed_tasks": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "allowed_zones": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["static_checks", "simulation_runs", "hazard_review_ref", "inspection_report_ref", "low_energy_test_ref"],
+      "properties": {
+        "static_checks": {"type": "array", "items": {"type": "string"}},
+        "simulation_runs": {"type": "array", "items": {"type": "string"}},
+        "hazard_review_ref": {"type": ["string", "null"]},
+        "manufacture_job_ref": {"type": ["string", "null"]},
+        "inspection_report_ref": {"type": ["string", "null"]},
+        "calibration_ref": {"type": ["string", "null"]},
+        "low_energy_test_ref": {"type": ["string", "null"]}
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approved_by", "approved_at", "expires_at", "revoked_at", "status"],
+      "properties": {
+        "approved_by": {"type": ["string", "null"]},
+        "approved_at": {"type": ["string", "null"], "format": "date-time"},
+        "expires_at": {"type": ["string", "null"], "format": "date-time"},
+        "revoked_at": {"type": ["string", "null"], "format": "date-time"},
+        "status": {"enum": ["PROPOSED", "QUARANTINED", "AUTHORIZED", "EXPIRED", "REVOKED"]}
+      }
+    },
+    "evidence_class": {"enum": ["SYNTHETIC", "SIMULATION_ONLY", "HUMAN_CONTROLLED", "SUPERVISED_AUTONOMY", "HARDWARE_VALIDATED", "PRODUCTION_VALIDATED"]},
+    "synthetic": {"type": "boolean"},
+    "extensions": {"type": "object"}
+  }
+}
+

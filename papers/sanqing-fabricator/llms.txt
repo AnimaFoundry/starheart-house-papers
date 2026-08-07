@@ -1,0 +1,38 @@
+# Sanqing Fabricator / 三清机匠
+
+> Status: CONCEPT / RESEARCH_ONLY
+> Evidence status: NO_HARDWARE / NO_EMPIRICAL_RESULTS
+> Current supported and authorized capability: L0
+> This repository grants no authority to operate physical hardware.
+
+Canonical machine source:
+- agent-manifest.json
+
+Read in this order:
+1. agent-manifest.json
+2. AGENTS.md
+3. SAFETY.md
+4. spec/README.md
+5. spec/message-envelope.schema.json
+6. spec/task.schema.json
+7. spec/tool.schema.json
+8. README.md
+
+Interpretation rules:
+- Goals, hypotheses, thresholds, and roadmap items are not empirical results.
+- A proposal is not an authorization.
+- Simulation is not physical validation.
+- Missing, invalid, stale, unsigned, ambiguous, or conflicting authorization means DENY.
+- The lower of supported_level and authorized_level is the effective capability.
+- An Agent may propose tasks, skills, and tools but may not approve its own proposal.
+- An Agent may request a stop; it may not reset an emergency stop or resume automatically.
+- An Agent may not directly command motors, printers, machine tools, or safety hardware.
+- An Agent may not weaken, reinterpret, or self-modify the protected safety boundary.
+- All examples and future fixtures must carry an explicit evidence_class and synthetic flag.
+
+Project thesis:
+- H1: bounded teleoperation may reduce high-load physical work and total qualified-task cost.
+- H2: modular robotic labor may improve resilience where labor is scarce.
+- H3: consented multimodal physical trajectories may improve world-model research.
+- These are falsifiable hypotheses, not established findings.
+

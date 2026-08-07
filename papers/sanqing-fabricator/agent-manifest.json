@@ -1,0 +1,207 @@
+{
+  "document_type": "sanqing_agent_manifest",
+  "schema_version": "0.1.0",
+  "project": {
+    "id": "org.animafoundry.sanqing-fabricator",
+    "name": "Sanqing Fabricator",
+    "name_zh_cn": "三清机匠",
+    "repository": "https://github.com/AnimaFoundry/starheart-house-papers",
+    "project_path": "papers/sanqing-fabricator",
+    "status": "concept",
+    "maturity": "research_only",
+    "languages": ["zh-CN", "en"]
+  },
+  "truthfulness": {
+    "hardware_exists": false,
+    "production_validated": false,
+    "empirical_results_available": false,
+    "current_supported_level": "L0",
+    "current_authorized_level": "L0",
+    "physical_operation_authority_granted": false,
+    "claims_are_hypotheses": true,
+    "note": "This repository describes a concept and open interfaces. It does not authorize physical operation, manufacturing, production deployment, or control of machinery."
+  },
+  "thesis": "Begin as a human-operated mobile manipulator, learn from consented physical demonstrations, collaborate with Agents through a constrained gateway, and only later explore bounded task and tool autonomy.",
+  "value_hypotheses": [
+    {
+      "id": "H1",
+      "name": "physical_labor_and_cost",
+      "claim": "Bounded teleoperation may reduce high-load physical exposure and total cost per qualified task.",
+      "evidence_status": "untested",
+      "priority_test_context": "High-wage markets, including the United States, without assuming positive ROI.",
+      "metrics": [
+        "human_direct_operation_minutes_per_qualified_task",
+        "high_load_exposure_minutes",
+        "total_cost_per_qualified_task",
+        "first_pass_yield",
+        "unplanned_downtime_minutes"
+      ]
+    },
+    {
+      "id": "H2",
+      "name": "labor_shortage_resilience",
+      "claim": "Modular robotic labor may improve production resilience where demographic change or hiring constraints leave tasks unmet.",
+      "evidence_status": "untested",
+      "metrics": [
+        "previously_unmet_task_hours_covered",
+        "employee_overtime_hours",
+        "deployment_and_changeover_hours",
+        "human_handoff_success_rate",
+        "small_organization_reproducibility"
+      ]
+    },
+    {
+      "id": "H3",
+      "name": "physical_data_for_world_models",
+      "claim": "Consented, provenance-preserving multimodal trajectories may improve prediction and action selection in unseen physical settings.",
+      "evidence_status": "untested",
+      "metrics": [
+        "consent_and_lineage_coverage",
+        "critical_stream_time_sync_completeness",
+        "unseen_layout_task_success_rate",
+        "human_intervention_rate",
+        "safe_abstention_rate"
+      ]
+    }
+  ],
+  "goals": [
+    "Enable low-barrier human teleoperation of a wheeled manipulator through a game controller or equivalent device.",
+    "Record consented, synchronized physical episodes with separate human intent, Agent proposal, safety modification, and executed command streams.",
+    "Allow Agents to interpret tasks, recommend registered tools, and propose bounded skills without direct actuator access.",
+    "Create an auditable lifecycle for proposing, verifying, fabricating, inspecting, registering, and authorizing new tools.",
+    "Keep interfaces modular, reproducible, vendor-neutral, and readable by humans and Agents."
+  ],
+  "non_goals": [
+    "Claiming that a workerless factory, general autonomy, or production-grade safety currently exists.",
+    "Granting an Agent open-world physical authority or runtime self-promotion.",
+    "Treating model confidence, natural-language intent, simulation, or a demonstration video as safety evidence by itself.",
+    "Bypassing native safety interlocks of robots, printers, machine tools, vehicles, or facilities.",
+    "Weapons, injury, coercion, or non-consensual personnel surveillance."
+  ],
+  "components": [
+    "mobile_base",
+    "robotic_arm",
+    "five_finger_end_effector_or_gripper",
+    "gamepad_teleoperation_station",
+    "sensor_fusion",
+    "agent_gateway",
+    "skill_controller",
+    "independent_safety_controller",
+    "tool_registry",
+    "tool_design_service",
+    "simulation_and_digital_twin",
+    "fabrication_gateway",
+    "inspection_station",
+    "append_only_audit_logger",
+    "human_machine_interface"
+  ],
+  "capability_levels": [
+    {"id": "L0", "name": "concept_and_simulation", "physical_scope": "none"},
+    {"id": "L1", "name": "human_teleoperation", "physical_scope": "human commands under independent safety control"},
+    {"id": "L2", "name": "agent_shadow_advisor", "physical_scope": "Agent proposals never enter execution automatically"},
+    {"id": "L3", "name": "supervised_bounded_autonomy", "physical_scope": "pre-approved skills constrained by task, tool, zone, speed, force, payload, and time"},
+    {"id": "L4", "name": "bounded_cell_autonomy", "physical_scope": "isolated cell with validated skills, tools, and local safety control"},
+    {"id": "L5", "name": "unsupported_open_world_autonomy", "physical_scope": "prohibited"}
+  ],
+  "authority": {
+    "effective_level_rule": "min(current_supported_level,current_authorized_level)",
+    "automatic_promotion": false,
+    "agent_direct_actuator_access": false,
+    "agent_may_propose_task": true,
+    "agent_may_propose_tool": true,
+    "agent_may_approve_own_proposal": false,
+    "agent_may_request_stop": true,
+    "agent_may_reset_emergency_stop": false,
+    "local_authorized_human_reset_required": true
+  },
+  "safety_invariants": {
+    "default_decision": "deny",
+    "failure_mode": "fail_closed",
+    "safety_plane_has_final_authority": true,
+    "wireless_is_sole_emergency_stop_channel": false,
+    "dual_channel_hardware_emergency_stop_required": true,
+    "automatic_restart_or_resume": false,
+    "machine_native_interlocks_remain_active": true,
+    "agent_may_modify_protected_safety_boundary": false,
+    "simulation_is_sufficient_physical_safety_evidence": false
+  },
+  "deny_or_stop_on": [
+    "authorization_missing_invalid_expired_or_out_of_scope",
+    "schema_or_signature_validation_failure",
+    "message_replay_sequence_or_version_error",
+    "heartbeat_or_wireless_control_loss",
+    "sensor_stale_uncalibrated_occluded_or_conflicting",
+    "localization_uncertainty_exceeded",
+    "human_exclusion_zone_violation",
+    "tool_identity_version_or_hash_mismatch",
+    "force_speed_payload_workspace_or_time_limit_exceeded",
+    "safety_controller_or_native_interlock_disagreement",
+    "required_audit_sink_unavailable"
+  ],
+  "tool_lifecycle": [
+    "PROPOSED",
+    "DESIGN_LOCKED",
+    "STATIC_CHECKED",
+    "SIMULATION_PASSED",
+    "HAZARD_REVIEWED",
+    "HUMAN_APPROVED",
+    "FABRICATED",
+    "INSPECTED",
+    "REGISTERED",
+    "LOW_ENERGY_TESTED",
+    "AUTHORIZED"
+  ],
+  "system_states": [
+    "OFF",
+    "BOOTING",
+    "SAFE_IDLE",
+    "MANUAL_TELEOP",
+    "SHADOW_MODE",
+    "SUPERVISED_AUTO",
+    "BOUNDED_CELL_AUTO",
+    "PROTECTIVE_STOP",
+    "EMERGENCY_STOP",
+    "FAULT"
+  ],
+  "data_governance": {
+    "consent_required": true,
+    "employment_power_imbalance_requires_extra_review": true,
+    "purpose_limitation_required": true,
+    "training_permission_is_separate_from_collection_permission": true,
+    "public_release_permission_is_separate": true,
+    "provenance_and_processing_lineage_required": true,
+    "retention_and_revocation_terms_required": true,
+    "bystander_and_trade_secret_minimization_required": true,
+    "public_data_default": "synthetic_or_explicitly_open_and_deidentified",
+    "cross_site_reuse_requires_scope_check": true,
+    "operator_input_agent_proposal_safety_override_and_executed_command_are_separate_streams": true
+  },
+  "evidence_classes": [
+    "SYNTHETIC",
+    "SIMULATION_ONLY",
+    "HUMAN_CONTROLLED",
+    "SUPERVISED_AUTONOMY",
+    "HARDWARE_VALIDATED",
+    "PRODUCTION_VALIDATED"
+  ],
+  "entrypoints": {
+    "human": "README.md",
+    "agent": "llms.txt",
+    "agent_contract": "AGENTS.md",
+    "safety": "SAFETY.md",
+    "normative_spec": "spec/README.md",
+    "schemas": [
+      "spec/message-envelope.schema.json",
+      "spec/task.schema.json",
+      "spec/tool.schema.json"
+    ],
+    "contributing": "CONTRIBUTING.md"
+  },
+  "versioning": {
+    "schema_semver": true,
+    "timestamps": "ISO-8601 UTC",
+    "physical_units": "SI",
+    "content_addressing": "SHA-256",
+    "history": "append-only; new versions supersede rather than overwrite"
+  }
+}
