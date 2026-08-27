@@ -1,0 +1,72 @@
+figure,parameter,value,unit,evidence_status,notes
+01_binomial_vs_poisson,p_eff,0.001,qualifying event/emitted particle,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+01_binomial_vs_poisson,particle_count_min,0,emitted particle,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+01_binomial_vs_poisson,particle_count_max,10000,emitted particle,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+02_deadline_detection,deadline_min_s,0,s,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+02_deadline_detection,deadline_max_s,0.02,s,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+02_deadline_detection,sample_count,500,sample,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+02_deadline_detection,effective_rates_hz,100;300;1000,qualifying event/s,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+03_roc_curves,stancil_anchor_signal_mean_event_per_gate,0.81,qualifying event/gate,PRIMARY_PAPER_ANCHOR,Lambda_s=0.81 is anchored to Stancil et al. (2012); this does not make the paired background or ROC regime empirical.
+03_roc_curves,anchor_regime_synthetic_background_mean_event_per_gate,0.01,qualifying event/gate,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+03_roc_curves,synthetic_signal_means_event_per_gate,0.5;2;5,qualifying event/gate,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+03_roc_curves,synthetic_background_means_event_per_gate,0.01;0.1;1,qualifying event/gate,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+03_roc_curves,maximum_count_threshold,18,count,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+04_arc_chord_advantage,mean_spherical_earth_radius_m,6371000,m,MODEL_CONSTANT,Geometry-model input; the plotted comparison remains idealized.
+04_arc_chord_advantage,central_angle_min_degree,0,degree,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+04_arc_chord_advantage,central_angle_max_degree,180,degree,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+04_arc_chord_advantage,sample_count,721,sample,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+04_arc_chord_advantage,surface_path_speed_m_s,299792458,m/s,MODEL_CONSTANT,Geometry-model input; the plotted comparison remains idealized.
+04_arc_chord_advantage,chord_path_speed_m_s,299792458,m/s,MODEL_CONSTANT,Geometry-model input; the plotted comparison remains idealized.
+05_incremental_value,detection_probability_min,0,probability,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,detection_probability_max,1,probability,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,detection_probability_sample_count,161,sample,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,false_alarm_probability_min,1e-09,probability/null window,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,false_alarm_probability_max,0.001,probability/null window,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,false_alarm_probability_sample_count,181,sample,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,pulse_costs_currency_per_valid_window,0;50;200,synthetic currency/valid window,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,valid_windows_per_year,10000,valid window/year,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,null_windows_per_year,1000000,null window/year,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,fallback_relative_gain_currency_per_success,500,synthetic currency/success,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,false_trigger_loss_currency,2000,synthetic currency/false trigger,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,annual_fixed_cost_currency,750000,synthetic currency/year,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+05_incremental_value,annual_operating_cost_currency,250000,synthetic currency/year,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,direct_signal_mean_min_event_per_gate,0.001,qualifying event/gate,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,direct_signal_mean_max_event_per_gate,10,qualifying event/gate,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,direct_signal_mean_sample_count,121,sample,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,relay_regeneration_delay_min_s,1e-06,s/relay,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,relay_regeneration_delay_max_s,0.01,s/relay,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,relay_regeneration_delay_sample_count,101,sample,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,total_distance_m,5000000,m,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,endpoint_delay_s,0.0002,s,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,em_fallback_deadline_s,0.025,s,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,value_decay_s,0.05,s,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,initial_gross_value_currency,500,synthetic currency,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,valid_windows_per_year,10000,valid window/year,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,null_windows_per_year,1000000,null window/year,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,false_trigger_loss_currency,2000,synthetic currency/false trigger,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,first_hop_false_origin_probability,1e-06,probability/null gate,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,pulse_cost_per_hop_currency,2,synthetic currency/valid window/hop,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,base_annual_fixed_cost_currency,150000,synthetic currency/year,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,base_annual_operating_cost_currency,100000,synthetic currency/year,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,annual_fixed_cost_per_relay_currency,40000,synthetic currency/year/relay,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,annual_operating_cost_per_relay_currency,10000,synthetic currency/year/relay,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,minimum_hop_count,1,hop,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,maximum_hop_count,8,hop,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,synthetic_geometric_exponent,2,dimensionless exponent,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,pulse_cost_convention,all-hop conservative cost on every valid window,text,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+06_relay_phase_diagram,false_trigger_relay_pulse_cost_convention,excluded separately; include in false-trigger loss if material,text,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+07_events_per_joule_break_even,target_probability_min,0.5,probability,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+07_events_per_joule_break_even,target_probability_max,0.999,probability,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+07_events_per_joule_break_even,target_probability_sample_count,220,sample,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+07_events_per_joule_break_even,pulse_energy_min_j,1000,J,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+07_events_per_joule_break_even,pulse_energy_max_j,1e+15,J,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+07_events_per_joule_break_even,pulse_energy_sample_count,260,sample,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+07_events_per_joule_break_even,count_threshold,1,count,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+07_events_per_joule_break_even,background_mean_event_per_gate,0,qualifying event/gate,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+08_hybrid_channel_comparison,em_fallback_deadline_s,0.001,s,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+08_hybrid_channel_comparison,fixed_neutrino_latency_s,0.0002,s,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+08_hybrid_channel_comparison,trigger_rate_min_hz,1,qualifying event/s,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+08_hybrid_channel_comparison,trigger_rate_max_hz,100000,qualifying event/s,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+08_hybrid_channel_comparison,trigger_rate_sample_count,400,sample,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+08_hybrid_channel_comparison,count_threshold,1,count,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.
+08_hybrid_channel_comparison,background_rate_hz,0,qualifying event/s,SYNTHETIC,SIMULATION_ONLY; illustrative assumption; not measured system performance.

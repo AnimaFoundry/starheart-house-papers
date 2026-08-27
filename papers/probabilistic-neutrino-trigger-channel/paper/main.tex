@@ -1,0 +1,788 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{statusred}{RGB}{145,24,24}
+\definecolor{statusgray}{RGB}{245,245,245}
+\newcommand{\statuslabel}[1]{\texttt{#1}}
+\newcommand{\unknown}{\texttt{UNKNOWN}}
+\newcommand{\synthetic}{\texttt{SYNTHETIC PARAMETER}}
+\newcommand{\simonly}{\texttt{SIMULATION\_ONLY}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\figpath}{../figures}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlength{\emergencystretch}{2em}
+\newcommand{\simfigure}[3]{%
+  \begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.94\linewidth]{\figpath/#1}
+  \caption{#2 \textbf{SIMULATION\_ONLY. Illustrative assumptions; not measured system performance.}}
+  \label{#3}
+  \end{figure}
+}
+\DeclareSIUnit{\bit}{bit}
+
+\title{\textbf{When One Bit Is Enough:}\\
+Probabilistic Neutrino--Electromagnetic Trigger Channels\\
+for Latency-Sensitive Markets}
+\author{AnimaFoundry}
+\date{Research cutoff: 2026-08-26}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\colorbox{statusgray}{\parbox{0.94\linewidth}{\centering\color{statusred}\bfseries
+CONCEPT \quad RESEARCH\_ONLY \quad L0 \quad NOT PEER REVIEWED\\
+NO CURRENT FEASIBILITY CLAIM \quad SIMULATION\_ONLY WHERE MARKED}}
+\end{center}
+
+\begin{abstract}
+A communication channel may have positive decision value even when its reliability and bandwidth are inadequate for conventional networking. This paper does not claim that a presently practical neutrino trading network exists. It reframes neutrino communication as a probabilistic positive trigger that can arrive before a reliable electromagnetic message while the electromagnetic channel remains responsible for full state, confirmation, and fallback. Starting from the directly inspected 2012 NuMI--MINERvA demonstration, we derive exact binomial and Poisson count models, deadline-constrained detection and false-alarm probabilities, first- and higher-arrival distributions, a valid simple-hypothesis sequential likelihood rule, and a Bayesian utility threshold. We then account for the complete path from market-data ingestion through source actuation, particle production, propagation, statistical evidence, data acquisition, authentication, and local execution. Incremental value is measured against the best technically plausible electromagnetic route, integrates over random detection time, separates fixed and variable costs, and permits competition or market design to erase latency rents. Direct and regenerative-relay architectures are compared with full regeneration delay and multiplicative detection risk. The reproducible calculations identify the dominant present gaps: source-command latency, qualifying interactions per wall-plug joule and per deadline, detector scale and decision latency, authenticated false-trigger probability, and economically durable opportunity value are not jointly established. Specific measurements that would cross a break-even boundary, and conditions that would falsify the commercial hypothesis, are stated explicitly.
+\end{abstract}
+
+\noindent\textbf{Keywords:} neutrino communication; Poisson channel; first-arrival detection; sequential decision; latency economics; market microstructure; regenerative relay; falsifiability
+
+\section{Introduction}
+
+Modern communication engineering usually rewards reliability, throughput, spectral efficiency, and low bit-error rate. A latency-sensitive decision problem has a different objective: obtain enough authenticated evidence to choose one predefined action before a deadline. A channel that is too unreliable for a file transfer may still be useful if it sometimes arrives early, if a miss merely gives up an incremental advantage, and if a conventional channel always delivers the authoritative message later. This asymmetry motivates the central question of this paper:
+
+\begin{quote}
+Can a neutrino link become economically useful as a probabilistic early-trigger channel before it becomes a reliable general-purpose communication system?
+\end{quote}
+
+The question is narrower than ``can neutrinos carry information?'' Stancil et al. demonstrated that they can, using the Fermilab NuMI beam and MINERvA detector \citep{Stancil2012}. Their link crossed \SI{1.035}{\kilo\metre}, including \SI{240}{\metre} of rock, and recovered a coded message at an estimated \SI{0.1}{\bit\per\second} with approximately \SI{1}{\percent} decoded error. It is also much broader than comparing a vacuum chord with a fiber arc. A useful trigger must ingest an event, authorize and actuate a source, generate a pulse, produce a qualifying interaction, reconstruct and authenticate it, decide, and reach the execution endpoint before the best competing electromagnetic message. Propagation is only one term.
+
+The proposal therefore separates five questions that are often collapsed. \emph{Physical feasibility} asks whether the particles and interactions permit information transfer. \emph{Engineering feasibility} asks whether a complete source--channel--detector system can meet stated rates, deadlines, backgrounds, availability, and safety constraints. \emph{Private economic feasibility} asks whether incremental revenue exceeds pulse, operating, false-trigger, and capital costs. \emph{Market-design durability} asks whether competition, speed bumps, batch auctions, consolidation, or regulation removes the opportunity. \emph{Social desirability} asks whether any private return reflects new surplus or an arms race. Evidence for one layer does not authorize a claim about the next.
+
+The paper makes eight bounded contributions:
+
+\begin{enumerate}[leftmargin=*]
+  \item a hybrid positive-trigger architecture with a reliable electromagnetic fallback;
+  \item a deadline-constrained Poisson detection and false-alarm model;
+  \item a first-arrival utility model and a carefully scoped sequential test;
+  \item full end-to-end latency accounting, including source and detector placement;
+  \item an incremental-value model against the best electromagnetic baseline;
+  \item direct-versus-relay optimization with full regeneration penalties;
+  \item reproducible, deterministic break-even simulations; and
+  \item a measurable engineering target sheet with explicit unknowns and falsifiers.
+\end{enumerate}
+
+These are proposed formalizations, not a claim of priority over all related decision-channel work. The repository labels every illustrative output \simonly, exposes provenance, and contains no live-market or particle-beam interface.
+
+\section{Prior Work}
+
+\subsection{The 2012 communication experiment}
+
+The primary anchor was read directly in its arXiv v2 author manuscript and cross-checked against the journal metadata \citep{Stancil2012}. NuMI accelerated protons to \SI{120}{\giga\electronvolt}; an \SI{8.1}{\micro\second} proton pulse struck a carbon target, magnetic focusing selected charged secondaries, and a \SI{675}{\metre} helium-filled decay pipe produced a predominantly muon-neutrino beam. The reported beam composition was 88\% muon neutrinos, 11\% muon antineutrinos, and 1\% electron neutrinos. Its spectrum peaked at \SI{3.2}{\giga\electronvolt}, with approximately \SI{2.8}{\giga\electronvolt} full width at half maximum. These are properties of that beam configuration, not universal neutrino-source constants; the later NuMI technical paper details how target, horn, decay, monitoring, and operating choices shape a beam \citep{Adamson2016}.
+
+MINERvA used 200 segmented scintillator planes with a total reported mass of 170 metric tons and a three-ton central tracker \citep{Stancil2012,Aliaga2014}. The communication selection searched for long muon tracks from charged-current interactions. Most selected signal came from interactions in upstream rock whose muons entered the detector, not solely from the nominal tracker mass. At a reduced intensity of $2.25\times10^{13}$ protons per pulse, the experiment registered a mean of 0.81 selected events per on pulse. The reported reconstruction efficiency for the selected long tracks exceeded 95\%, and beam-off candidates were described as negligible for that test.
+
+Information was encoded by on-off keying (OOK). A 40-bit abbreviated-ASCII payload spelling ``neutrino'' was convolutionally encoded into 92 bits, joined to a 64-bit pseudo-noise synchronization sequence, and transmitted as a 156-bit frame. The records were modeled as conditionally independent counts
+\begin{equation}
+K_i\sim\operatorname{Poisson}(\lambda x_i+\lambda_0),
+\end{equation}
+where $x_i\in\{0,1\}$ and $\lambda_0$ was nearly zero in that experiment. Among 3,454 records over just over 142 minutes, 1,402 events yielded $\widehat{\lambda}\simeq0.81$; fifteen frames were synchronized. Accelerator aborts and data-acquisition dead time prevented recovery of some frames. That availability evidence matters here: absence of an event cannot generally authenticate a zero.
+
+For equiprobable OOK bits, a zero-background receiver that declares one for any nonzero count has uncoded bit-error probability $e^{-\lambda}/2$. Pooling frames and applying error control reduced error. The published \SI{0.1}{\bit\per\second} value is explicitly described by the authors as a rough estimate because repeated-frame combinations reused data. The experiment established communication in principle, but it did not measure request-to-beam actuation, request-to-action latency, energy per emitted neutrino, long-baseline divergence, or incremental market value. Its few-nanosecond timestamp resolution for selected muons is interaction timing precision, not an actionable end-to-end decision latency. MINERvA's DAQ architecture, for example, was designed around accelerator gates and bulk readout rather than a market decision path \citep{Perdue2012}.
+
+\subsection{Sources, propagation, and detectors}
+
+Earlier and contemporary studies examined unusual communication through obstructing matter, including muon-storage-ring concepts \citep{Geer1998,Huber2010}. They establish useful source and geometry ideas, but their assumed facilities, detectors, objectives, and symbol times cannot be imported as measured performance. Neutrino-factory design studies require production, capture, cooling, acceleration, storage, and decay of muons \citep{IDSNF2011}; MICE later demonstrated ionization cooling of a muon beam as one subsystem, not a communications facility \citep{MICE2020}. Every stage adds efficiency, timing, cost, and safety terms. A narrow far-field beam is a consequence of source kinematics and optics, not a free inverse-square law exemption.
+
+Cross sections depend on energy, flavor, target, interaction channel, nuclear effects, and selection. The Particle Data Group review surveys accelerator measurements across approximately \SIrange{0.1}{300}{\giga\electronvolt} and emphasizes material and flux uncertainties \citep{Zeller2024,PDG2024}. At much higher energy, Standard Model predictions depend on parton distributions \citep{CooperSarkar2011}. IceCube measured attenuation through Earth using 10,784 upward-going neutrino-induced muons over \SIrange{6.3}{980}{\tera\electronvolt}, demonstrating empirically that ``penetrating'' is energy- and chord-dependent rather than absolute \citep{IceCube2017}. High energy can increase interaction probability and alter collimation, yet it can also increase source burden and Earth attenuation. No single-energy monotonic optimization is defensible.
+
+Oscillation and matter effects change the flavor spectrum along long baselines and must be folded into detector response \citep{GonzalezGarcia2024}. Large detectors show that enormous target volumes can be instrumented, while their timing, buffering, trigger, and reconstruction systems are optimized for physics programs, not necessarily minimum authenticated decision latency; DUNE's technical design illustrates the complexity separating synchronized samples from final event products \citep{Abi2020}. MINOS achieved approximately \SI{1.5}{\nano\second} single-event timing resolution in a dedicated time-of-flight measurement while relying on a beam pretrigger and calibrated timing chain \citep{MINOS2015}. That result constrains interaction timestamps, not the time from an unforeseen external request to an authenticated action. The existence of precise timestamps therefore supplies no bound on all downstream latency terms.
+
+\subsection{Counting channels and sequential decisions}
+
+The photon-counting literature formalizes channels whose observations are Poisson processes \citep{Kabanov1978,Pierce1981}. Stancil et al. used this analogy directly. The present work does not attempt a new general capacity theorem. Instead it asks for a stopping decision before a fixed economic deadline, with asymmetric miss and false-trigger costs. Classical sequential probability-ratio tests can reduce expected sample size between two fully specified stochastic hypotheses while controlling error probabilities \citep{Wald1945,WaldWolfowitz1948}; minimum expected sample count under the theorem's conditions is not automatically minimum end-to-end wall-clock latency. Their validity does not survive arbitrary rate uncertainty, correlations, or adversarial faults without extension.
+
+\subsection{Latency races and electromagnetic competitors}
+
+Financial-market latency investment is documented rather than assumed. Laughlin, Aguirre, and Grundfest report a three-millisecond decline in estimated one-way Chicago--New York information time between 2010 and 2012, associating phases with latency-optimized fiber and line-of-sight microwave networks \citep{Laughlin2014}. More recent measurement and design work shows that a specialized terrestrial microwave route can approach the surface-vacuum lower bound, subject to availability and terminal penalties \citep{Bhattacherjee2022}. Free-space optical satellite models likewise separate near-$c$ propagation from serialization, node processing, acquisition/pointing setup, atmospheric loss, link budget, and power constraints \citep{Liang2023FSO}; they are not measured venue-to-venue market routes. This evidence has two implications. First, milliseconds can matter privately. Second, the comparator is not generic Internet fiber: route engineering and near-free-space propagation already compete.
+
+Budish, Cramton, and Shim model the continuous limit order book as creating a speed race and propose frequent batch auctions as a design response \citep{Budish2015}. Aquilina, Budish, and O'Neill use approximately 2.2 billion exchange messages across 43 London Stock Exchange trading days to measure races at the exchange's outer network boundary \citep{Aquilina2022}. Their work supports the existence of latency-arbitrage rents but also the proposition that market design can remove them. Other models find that speed choices and market performance can have nuanced effects \citep{Baldauf2020}. It is therefore an error to treat high-frequency trading as automatically socially useful, or to capitalize a permanent stream of latency rent.
+
+\section{Hybrid Neutrino--Electromagnetic Trigger Architecture}
+
+\subsection{Positive trigger, authoritative fallback}
+
+The source observes a predefined market event and initiates two paths. The conventional electromagnetic path carries the full event state over the best available network. The neutrino path carries only a positive trigger, or at most a tiny codebook of prearranged symbols. At the receiver, a valid authenticated early pulse may authorize a predefined local response. If the pulse is missed, the receiver waits. The electromagnetic message supplies fallback, confirmation, reconciliation, and the data needed for actions outside the tiny codebook.
+
+The economic asymmetry follows immediately. Conditional on a valid opportunity, a missed neutrino trigger loses only the incremental gain relative to the electromagnetic action. A false trigger can execute an action in a null state and cause a real loss. This is why detection probability cannot be optimized without false-alarm probability, null-window frequency, and loss severity.
+
+Non-detection is not a reliable zero. It is observationally compatible with no signal, a missed interaction, detector outage, timing-gate error, beam misdirection, reconstruction failure, dead time, or authentication failure. The simplest credible semantics are therefore
+\begin{equation}
+\text{detected and authenticated positive pulse}\rightarrow\text{predefined action},
+\qquad
+\text{otherwise}\rightarrow\text{wait for fallback}.
+\end{equation}
+
+Multiple actions such as up, down, cancel, or hedge can be mapped to predefined time slots or pulse sequences, but every additional slot increases exposure to background, clock error, latency, and particles. This paper does not assume controllable exotic ``types'' of neutrino. Flavor and energy are physical distributions to be propagated and detected, not arbitrary application labels.
+
+\subsection{Four receiver layers}
+
+A receiver pipeline must distinguish four objects:
+
+\begin{enumerate}[leftmargin=*]
+  \item a \emph{raw event}: detector activity in or near a gate;
+  \item a \emph{qualifying reconstructed event}: activity that passes timing, direction, topology, energy, and quality cuts;
+  \item a \emph{statistical trigger}: a count or likelihood rule crossing a registered threshold; and
+  \item an \emph{authenticated actionable trigger}: a statistical trigger that also satisfies timing/codebook integrity, system availability, risk, and reconciliation policy.
+\end{enumerate}
+
+Only the last layer has economic meaning. Reporting raw timestamp precision as if it were layer-four latency is a category error.
+
+\subsection{Authentication cost}
+
+Prearranged gates and synchronized codebooks can reject accidental background, but they do not provide unconditional secrecy or authenticity. A threat model must include source spoofing, replay-like pulse timing, codebook compromise, detector faults, denial of service, clock drift, and conventional-message disagreement. Let an authentication sequence allocate $a$ slots of duration $t_{\mathrm{slot}}$, and require expected signal count $\lambda_{s,r}$ in positive slot $r$. Its full allocated codeword duration and positive-pulse particle budget are
+\begin{equation}
+\tau_{\mathrm{codeword,alloc}}=a\,t_{\mathrm{slot}},\qquad
+N_{\nu,\mathrm{auth}}=\sum_{r=1}^{a}N_{\nu,r},
+\end{equation}
+where $N_{\nu,r}=0$ in a quiet guard slot. Actual decision time can be earlier than the allocated end only when no still-unobserved positive or guard slot remains; decoding and checking are additional. More explicitly, let $\mathcal S$ be the prescribed positive-pulse slots and $\mathcal G$ guard slots that must remain quiet. If slot decisions are independent, with statistical detection $d_r$ and null false-alarm probability $u_r$, then the sequence-level actionable probabilities are
+\begin{align}
+P_D^{A}&=P_{\mathrm{avail}}\prod_{r\in\mathcal S}d_r
+                 \prod_{r\in\mathcal G}(1-u_r),\label{eq:auth-pd}\\
+P_{FA}^{A}&=P_{\mathrm{avail}}\prod_{r\in\mathcal S}u_r
+                 \prod_{r\in\mathcal G}(1-u_r).\label{eq:auth-pfa}
+\end{align}
+The same availability factor is appropriate only when an unavailable receiver cannot act; other fault semantics require a different model. Correlated bursts, a compromised codebook, spoofing, or replay invalidate the product form, so Eqs.~\eqref{eq:auth-pd}--\eqref{eq:auth-pfa} are an auditable baseline rather than a security claim. Let $T_{r,m}^{\mathrm{evid}}$ be the physical accumulation time to the required evidence in positive slot $r$, measured from its start. A quiet guard slot $g$ cannot be certified until its end. The sequence-evidence time is therefore
+\begin{equation}
+T_{\mathrm{seq}}=\max\!\left\{
+\max_{r\in\mathcal S}\bigl[(r-1)t_{\mathrm{slot}}+T_{r,m}^{\mathrm{evid}}\bigr],
+\max_{g\in\mathcal G}g\,t_{\mathrm{slot}}
+\right\},
+\label{eq:sequence-time}
+\end{equation}
+where the second maximum is zero if there are no guard slots. Decode and integrity-check latency is charged separately below, so it is not double-counted inside $T_{\mathrm{seq}}$. Its signaling cost is $C_{\mathrm{pulse}}^{A}=\sum_{r\in\mathcal S}C_{\mathrm{pulse},r}+C_{\mathrm{auth,variable}}$. A scheme requiring hundreds of bits can therefore eliminate the one-bit advantage in four places at once: $P_D^{A}$, $T_{\mathrm{seq}}$, particle count, and cost. Security is a constrained co-design problem, not a consequence of weak particle interactions.
+
+\section{Statistical Detection and Deadline-Constrained Decision Theory}
+
+\subsection{Exact independent-particle model}
+
+Let $N_\nu$ be the number of emitted neutrinos in a signaling pulse and let $p_{\mathrm{eff}}$ be the probability that one emitted particle produces a qualifying reconstructed event inside the decision gate. Under independent, identically distributed particle trials,
+\begin{equation}
+P(K_s\ge1)=1-(1-p_{\mathrm{eff}})^{N_\nu}.
+\label{eq:binomial-detect}
+\end{equation}
+For small $p_{\mathrm{eff}}$ with $N_\nu p_{\mathrm{eff}}$ finite,
+\begin{equation}
+1-(1-p_{\mathrm{eff}})^{N_\nu}\approx1-e^{-N_\nu p_{\mathrm{eff}}}.
+\end{equation}
+Define $\lambda_s=N_\nu p_{\mathrm{eff}}$. If $N_\nu=1/p_{\mathrm{eff}}$, then $\lambda_s=1$ and
+\begin{equation}
+P(K_s\ge1)\approx1-e^{-1}=0.632120\ldots.
+\label{eq:one-minus-e}
+\end{equation}
+This is not a general reliability law. It is the threshold-one, independent-event, small-$p_{\mathrm{eff}}$, zero-background limiting result. The exact value at finite $p$ is $1-(1-p)^{1/p}$ when $1/p$ is integral, and the repository tests its difference from the Poisson approximation rather than hiding it.
+
+\simfigure{01_binomial_vs_poisson.png}{Exact binomial and Poisson-approximation detection probabilities as the emitted-particle count varies at a fixed synthetic per-particle probability.}{fig:binomial-poisson}
+
+\subsection{Signal, background, and thresholds}
+
+For a fixed gate, define
+\begin{equation}
+H_0:K\sim\operatorname{Poisson}(\lambda_b),\qquad
+H_1:K\sim\operatorname{Poisson}(\lambda_b+\lambda_s).
+\end{equation}
+For a threshold $m\ge1$ that declares a statistical trigger when $K\ge m$,
+\begin{align}
+P_D^{\mathrm{stat}}(m)&=1-e^{-(\lambda_s+\lambda_b)}
+\sum_{j=0}^{m-1}\frac{(\lambda_s+\lambda_b)^j}{j!},\label{eq:pd}\\
+P_{FA}^{\mathrm{stat}}(m)&=1-e^{-\lambda_b}
+\sum_{j=0}^{m-1}\frac{\lambda_b^j}{j!}.\label{eq:pfa}
+\end{align}
+Raising $m$ can suppress false alarms but delays evidence and increases the signal budget. These are layer-three probabilities, not actionable probabilities; substituting them into Eqs.~\eqref{eq:auth-pd}--\eqref{eq:auth-pfa} is valid only under the stated sequence and independence assumptions. A receiver chosen from a displayed ROC still requires an authentication and fault model: correlated electronics errors or timing attacks are not Poisson background.
+
+\simfigure{03_roc_curves.png}{Count-threshold ROC curves for synthetic regimes plus a scoped $\lambda_s=0.81$ signal mean from the 2012 anchor paired with an explicitly synthetic background.}{fig:roc}
+
+\subsection{First and higher arrivals before a deadline}
+
+Let qualifying events form a homogeneous Poisson process of rate $\mu$. The time $T_1$ to the first event has
+\begin{equation}
+P(T_1\le t)=1-e^{-\mu t}.
+\end{equation}
+The time $T_m$ to the $m$th event is Erlang distributed, with the count-to-arrival identity providing a direct derivation \citep{Gallager2011Poisson}:
+\begin{equation}
+P(T_m\le t)=1-e^{-\mu t}\sum_{j=0}^{m-1}\frac{(\mu t)^j}{j!}.
+\label{eq:mth-arrival}
+\end{equation}
+Thus a zero-background, threshold-one target $q$ before decision deadline $t_d$ requires
+\begin{equation}
+\mu_s\ge\frac{-\ln(1-q)}{t_d}.
+\label{eq:rate-target}
+\end{equation}
+With background, replace $\mu$ by $\mu_s+\mu_b$ for statistical detection and by $\mu_b$ for statistical false alarm; for $m>1$, solve Eq.~\eqref{eq:mth-arrival} numerically subject to both $P_D^{\mathrm{stat}}\ge q$ and $P_{FA}^{\mathrm{stat}}\le\alpha$. For a coded sequence, combine the slot distributions into $T_{\mathrm{seq}}$ from Eq.~\eqref{eq:sequence-time}, including the probability that the entire codeword is never accepted. Here $t_d$ is the evidence-accumulation budget after all fixed path terms have been subtracted from the electromagnetic deadline; it is not automatically the full request-to-action deadline.
+
+\simfigure{02_deadline_detection.png}{Threshold-one probability of sufficient evidence by deadline for several synthetic qualifying-event rates.}{fig:deadline}
+
+\subsection{A scoped sequential rule}
+
+For two fully specified homogeneous Poisson-process hypotheses with rates $\mu_0>0$ and $\mu_1>\mu_0$, the log-likelihood ratio after observing cumulative count $N(t)$ is
+\begin{equation}
+\ell(t)=N(t)\ln\!\left(\frac{\mu_1}{\mu_0}\right)-(\mu_1-\mu_0)t.
+\label{eq:poisson-llr}
+\end{equation}
+A Wald-style test continues while $B<\ell(t)<A$, decides signal when $\ell(t)\ge A$, and decides null or waits for fallback when $\ell(t)\le B$ or the hard deadline arrives \citep{Wald1945,WaldWolfowitz1948}. Approximate design boundaries for type-I error $\alpha$ and type-II error $\beta$ are $A\simeq\ln[(1-\beta)/\alpha]$ and $B\simeq\ln[\beta/(1-\alpha)]$.
+
+This rule can reduce mean observation time relative to a fixed gate under the stated model. It is not valid evidence that latency improves in a real detector: $\mu_0=0$ makes the likelihood ratio singular; unknown or drifting rates require a composite or robust test; dead time and correlated bursts violate the process; and authentication, reconstruction, and source actuation remain outside Eq.~\eqref{eq:poisson-llr}. The code therefore exposes the count and time primitives but does not label an SPRT scenario as measured system performance.
+
+\subsection{Bayesian utility threshold}
+
+Let $\pi_1$ be the prior probability of a valid signal in a decision window and $f_i(k)$ the Poisson probability mass under $H_i$. Bayes' rule gives
+\begin{equation}
+P(H_1\mid K=k)=
+\frac{\pi_1 f_1(k)}{\pi_1 f_1(k)+(1-\pi_1)f_0(k)}.
+\end{equation}
+If $G$ is the incremental gain from a correct early action, $L_{FA}$ the loss from acting under $H_0$, and $C_{\mathrm{execution}}$ an action-specific cost, then act only if
+\begin{equation}
+P(H_1\mid k)G-[1-P(H_1\mid k)]L_{FA}-C_{\mathrm{execution}}>0.
+\label{eq:bayes-utility}
+\end{equation}
+The threshold depends on priors, losses, and time-varying gain. Minimizing bit-error rate weights errors according to a communication objective; maximizing Eq.~\eqref{eq:bayes-utility} weights a missed early opportunity and a false trade asymmetrically and relative to a fallback. The two objectives coincide only under special choices of priors and costs.
+
+\section{Physical Link and Detector Model}
+
+\subsection{Dimensionally explicit event yield}
+
+The scalar $p_{\mathrm{eff}}$ is a useful summary, but it must be auditable. Let $\mathcal{F}_\beta(E,\vect{x};L)$ be the differential fluence of flavor $\beta$ at receiver position $\vect{x}$ per pulse, with units neutrinos per square metre per joule of neutrino energy. Let $\Sigma_T(\vect{x})$ be target column number in targets per square metre along a local trajectory, $\sigma_{\beta}(E)$ an interaction cross section in square metres per target, and $\epsilon_{\mathrm{det}}$, $\epsilon_{\mathrm{reco}}$, $\epsilon_{\mathrm{gate}}$, and $\epsilon_{\mathrm{class}}$ dimensionless conditional efficiencies. A thin-target expected selected count is
+\begin{align}
+\lambda_s \simeq \sum_\beta \int_{A_D}\!dA\int\!dE\;
+&\mathcal{F}_\beta(E,\vect{x};L)\,
+\sigma_\beta(E)\Sigma_T(\vect{x})\nonumber\\
+&\times\epsilon_{\mathrm{det}}(E,\vect{x})
+\epsilon_{\mathrm{reco}}(E,\vect{x})
+\epsilon_{\mathrm{gate}}(E,\vect{x})
+\epsilon_{\mathrm{class}}(E,\vect{x}).
+\label{eq:physical-integral}
+\end{align}
+The exact interaction factor $1-\exp[-\sigma\Sigma_T]$ replaces $\sigma\Sigma_T$ outside the thin-target limit. Equation~\eqref{eq:physical-integral} is dimensionless: fluence times area integrates incident particle count, while cross section times target column is an interaction probability. Oscillation probabilities, source flavor spectrum, source angular distribution, focusing, geometric overlap, and Earth attenuation determine $\mathcal{F}_\beta$; dead time and availability either modify efficiencies or enter a separate state model.
+
+An alternative ``flux times total target number'' expression is valid only when flux is uniform over a specified target geometry. Treating a 170-ton detector mass as though every target sees the same fluence and every interaction is accepted is not dimensionally or operationally adequate. The 2012 result further warns that surrounding material can contribute selected events, making nominal instrument mass a poor standalone denominator.
+
+\subsection{Energy is a coupled choice}
+
+Increasing energy can increase some interaction cross sections and can narrow decay-product angles in some source configurations \citep{Geer1998,Huber2010,Zeller2024}. It also changes focusing, decay length, flavor spectrum, final-state topology, detector efficiency, source energy, shielding, activation, heat, and cost. Above tens of teraelectronvolts, Earth absorption is experimentally material \citep{IceCube2017}. The optimization variable is therefore a spectrum and complete facility, not ``choose higher energy.'' A credible scenario must compute
+\begin{equation}
+\frac{\text{qualifying reconstructed events in deadline}}{\text{wall-plug joule}}
+\end{equation}
+with uncertainty, rather than report only neutrinos per proton or cross section at a selected energy.
+
+\subsection{Beam geometry without a universal inverse square}
+
+For an isotropic source, inverse-square fluence follows from solid angle. An engineered decay beam is not isotropic: parent momentum, focusing horns or storage-ring optics, decay straight geometry, energy, baseline, alignment, and receiver aperture determine the spot. The simulations therefore contain three relay/link treatments. The first imposes no distance penalty as an ideal bound. The second uses an explicitly synthetic power-law divergence to expose mathematical phase boundaries. The third is ``literature-informed'' only to the extent that a named source and detector supply a complete parameter; missing integrated yield remains \unknown. None is presented as a universal beam law.
+
+\subsection{Critical present unknowns}
+
+The reviewed sources do not jointly establish emitted useful neutrinos per wall-plug joule, long-baseline spot fluence per joule, qualifying interactions per joule per decision window, source-command-to-beam latency, compact receiver time-to-action, or a transferable authenticated background rate. These are not filled with plausible numbers. The technology-gap contour in Fig.~\ref{fig:events-joule} is a zero-background particle-budget requirement surface over synthetic target-probability and pulse-energy inputs, not an economic break-even calculation or a prediction of current hardware.
+
+\simfigure{07_events_per_joule_break_even.png}{Zero-background threshold-one qualifying-event yield required per pulse joule for synthetic target probabilities and pulse energies.}{fig:events-joule}
+
+\section{End-to-End Latency and Earth Geometry}
+
+\subsection{Complete latency accounting}
+
+Define the full random request-to-action time for an accepted neutrino trigger as
+\begin{align}
+T_A\equiv\tau_\nu={}&\tau_{\mathrm{feed}}+\tau_{\mathrm{market\ event\ class}}+\tau_{\mathrm{beam\ command}}
++\tau_{\mathrm{source\ actuation}}\nonumber\\
+&+\tau_{\mathrm{particle\ production}}+\frac{L_\nu}{v_\nu}+T_{\mathrm{seq}}\nonumber\\
+&+\tau_{\mathrm{DAQ/reconstruction}}+\tau_{\mathrm{auth,decode}}
++\tau_{\mathrm{clock/sync\ margin},\nu}\nonumber\\
+&+\tau_{\mathrm{decision}}+\tau_{\mathrm{local\ route}}.
+\label{eq:nu-latency}
+\end{align}
+The best electromagnetic baseline is
+\begin{align}
+\tau_{\mathrm{EM}}={}&\tau_{\mathrm{feed,EM}}+\tau_{\mathrm{encode,EM}}
++\frac{L_{\mathrm{route}}}{v_{\mathrm{medium}}}+\tau_{\mathrm{network}}\nonumber\\
+&+\tau_{\mathrm{decode}}+\tau_{\mathrm{clock/sync\ margin,EM}}
++\tau_{\mathrm{local\ route,EM}}.
+\label{eq:em-latency}
+\end{align}
+Commercially useful early evidence requires
+\begin{equation}
+\Delta\tau=\tau_{\mathrm{EM}}-\tau_\nu>0
+\label{eq:latency-break-even}
+\end{equation}
+for a sufficiently valuable portion of the full $T_A$ distribution, not merely for mean propagation. In a one-pulse threshold-$m$ special case, $T_{\mathrm{seq}}=T_m$; a multi-slot codeword also waits for every required guard slot. Source and detector distance from price-discovery venues, feed-handler tails, machine protection, pulse width, clock synchronization, reconstruction, authentication decode, and local risk/execution paths all count exactly once. A massive detector or accelerator cannot be assumed to occupy exchange colocation space.
+
+\subsection{Arc and chord}
+
+For spherical Earth radius $R$ and endpoint central angle $\theta\in[0,\pi]$,
+\begin{equation}
+L_{\mathrm{arc}}=R\theta,\qquad
+L_{\mathrm{chord}}=2R\sin\left(\frac{\theta}{2}\right).
+\label{eq:arc-chord}
+\end{equation}
+The chord is shorter except at zero separation. The calculations use \SI{6371}{\kilo\metre} as a spherical reference radius, consistent with the Preliminary Reference Earth Model convention, while treating real density and matter effects separately \citep{PREM1981}. A propagation-only comparison might place a neutrino near $c$ on the chord and fiber at a synthetic $2.0\times10^8$ m/s along an arc. That is a sensitivity bound, not an endpoint network measurement. A current vendor characterization gives a typical group index of 1.4682 at \SI{1550}{\nano\metre}, implying \SI{4.897388}{\micro\second\per\kilo\metre} for that fiber family before route stretch or equipment \citep{Corning2025,BIPM2019}. Public long-haul maps show that real fiber follows rights of way rather than geodesics \citep{Durairajan2015}. Microwave or free-space paths can approach $c$: one limited \SI{1139.5}{\kilo\metre} Chicago--Secaucus measurement reported a \SI{7.7}{\milli\second} round trip for 32-byte packets, within 1.5\% of the corresponding surface-vacuum round trip, but with sampled outages and without forward-error correction \citep{Bhattacherjee2022}. Satellite optical paths trade near-$c$ media for longer geometry, terminal setup, link-budget constraints, and per-node processing; a peer-reviewed model explicitly includes propagation and node delay while excluding its described acquisition/pointing setup time \citep{Liang2023FSO}. The relevant $\tau_{\mathrm{EM}}$ is the fastest technically plausible reliable system for the actual endpoints, not a deliberately weak fiber route. No audited 2026 end-to-end route for a named venue pair was found, so that input remains \unknown.
+
+\simfigure{04_arc_chord_advantage.png}{Geometry-only spherical surface-arc-versus-direct-chord propagation difference across endpoint separation, with both paths evaluated at $c$ to isolate geometry.}{fig:arc-chord}
+
+\subsection{Neutrino velocity}
+
+For a neutrino mass eigenstate with total energy $E\gg mc^2$,
+\begin{equation}
+v=c\sqrt{1-\left(\frac{mc^2}{E}\right)^2},\qquad
+\frac{L}{v}-\frac{L}{c}\simeq\frac{L}{2c}\left(\frac{mc^2}{E}\right)^2.
+\label{eq:tof}
+\end{equation}
+The KATRIN collaboration reports an effective electron-antineutrino mass upper limit of \SI{0.45}{\electronvolt} at 90\% confidence from 259 measurement days \citep{KATRIN2025}. Using \SI{0.45}{\electronvolt} only as an illustrative reference rest-energy scale and \SI{1}{\giga\electronvolt} total energy, Eq.~\eqref{eq:tof} gives a whole-Earth-diameter lag relative to light of order $10^{-21}$ seconds. This is not an all-eigenstate mass-limit reinterpretation or a universal time-of-flight bound; it is a scale calculation showing that such a mass-induced lag is negligible beside engineering latency at GeV energy. Neutrinos are never modeled faster than light; $c$ is the exact SI value \citep{BIPM2019}.
+
+\subsection{Opportunity decay and arrival distributions}
+
+Let $G(t)$ be gross opportunity value if an authenticated action occurs at latency $t$. A useful synthetic family is
+\begin{equation}
+G(t)=G_0e^{-t/\tau_\alpha},
+\end{equation}
+but no linear or exponential law is presumed empirical without market-specific data. If $f_{T_A}(t)$ is the sub-density of full request-to-action times defined by Eq.~\eqref{eq:nu-latency}, the gain relative to fallback is governed by the entire distribution on $[0,\tau_{\mathrm{EM}})$, including its miss probability and tail. A lower physical propagation time with a broad or late evidence distribution can be economically worse than a more predictable electromagnetic path.
+
+\section{Economic Expected-Value Model}
+
+\subsection{Incremental annual value}
+
+Let $\rho_1$ be annual valid-opportunity count, $\rho_0$ annual null-window count, $P_D^{A}$ probability of authenticated actionable detection before the electromagnetic deadline, $P_{FA}^{A}$ actionable false-trigger probability per null window, $G_\nu$ and $G_{\mathrm{EM}}$ gross values with early and conventional action, $L_{FA}$ false-trigger loss, $C_{\mathrm{pulse}}^{A}$ sequence-level variable cost, $C_{\mathrm{fixed}}$ annualized fixed R\&D and infrastructure cost, and $C_{\mathrm{operate}}$ other annual operating cost. A first model is
+\begin{equation}
+\Delta V=\rho_1\left[P_D^{A}(G_\nu-G_{\mathrm{EM}})-C_{\mathrm{pulse}}^{A}\right]
+-\rho_0P_{FA}^{A}L_{FA}-C_{\mathrm{fixed}}-C_{\mathrm{operate}}.
+\label{eq:annual-simple}
+\end{equation}
+The null-window definition must be pre-registered: increasing the number of gates can make a tiny per-gate $P_{FA}^{A}$ costly. Correlated windows invalidate simple multiplication.
+
+If actionable detection time is random, replace $P_D^{A}(G_\nu-G_{\mathrm{EM}})$ by
+\begin{equation}
+\mathbb{E}[\Delta G]=\int_0^{\tau_{\mathrm{EM}}}
+\left[G(t)-G(\tau_{\mathrm{EM}})\right]f_{T_A}(t)\,dt,
+\label{eq:integrated-gain}
+\end{equation}
+where the sub-density integrates to $P_D^{A}$ before the deadline. Then
+\begin{equation}
+\Delta V=\rho_1\left[\mathbb{E}[\Delta G]-C_{\mathrm{pulse}}^{A}\right]
+-\rho_0P_{FA}^{A}L_{FA}-C_{\mathrm{fixed}}-C_{\mathrm{operate}}.
+\label{eq:annual-value}
+\end{equation}
+The electromagnetic baseline is already valuable; a miss returns to that baseline rather than to zero. Market impact, slippage, fees, risk capital, detector availability, and reconciliation losses can be included inside $G$, $L_{FA}$, or explicit terms, but must not be omitted because they are inconvenient.
+
+\subsection{Finite horizon and break-even capital}
+
+For initial capital $C_0$, annual operating surplus $S_y$ from Eq.~\eqref{eq:annual-value} excluding annualized fixed capital, discount rate $r$, and commercialization horizon $Y$,
+\begin{equation}
+\operatorname{NPV}=-C_0+\sum_{y=1}^{Y}\frac{S_y}{(1+r)^y}.
+\end{equation}
+The break-even capital expenditure is
+\begin{equation}
+C_{0,\max}=\sum_{y=1}^{Y}\frac{S_y}{(1+r)^y},
+\label{eq:capex}
+\end{equation}
+provided the right-hand side is positive. $S_y$ should decline when competitors copy the technology, opportunity frequency falls, alpha decays faster, market fragmentation decreases, or rules change. An infinite perpetuity is especially inappropriate for a technology whose customer can be removed by exchange design.
+
+\simfigure{05_incremental_value.png}{Annual incremental value over synthetic detection, false-trigger, and pulse-cost grids.}{fig:value}
+
+\subsection{The key inequality}
+
+Combining the models gives the most important economic test:
+\begin{equation}
+\rho_1\left[
+\int_0^{\tau_{\mathrm{EM}}}
+\bigl(G(t)-G(\tau_{\mathrm{EM}})\bigr)f_{T_A}(t)\,dt
+-C_{\mathrm{pulse}}^{A}\right]
+>
+\rho_0P_{FA}^{A}L_{FA}+C_{\mathrm{fixed}}+C_{\mathrm{operate}}.
+\label{eq:key-break-even}
+\end{equation}
+Every load-bearing term is observable in principle. At present, several are \unknown. That makes the present business case unsupported, not secretly positive.
+
+\section{Direct and Regenerative-Relay Architectures}
+
+\subsection{Full relay latency}
+
+Consider $h$ neutrino hops of lengths $L_i$. A regenerative relay must first produce sufficient evidence, reconstruct and authenticate it, make a bounded decision, safely command a new source, actuate that source, produce particles, and form the next pulse. Its latency is not the propagation time plus an FPGA gate. Define
+\begin{equation}
+\tau_h=\sum_{i=1}^{h}\frac{L_i}{v_\nu}
++\sum_{i=1}^{h-1}\tau_{\mathrm{relay},i}
++\tau_{\mathrm{endpoint}},
+\label{eq:relay-latency}
+\end{equation}
+where each relay term contains interaction waiting, reconstruction, confidence threshold, authentication, relay decision, beam command, source actuation, particle production, and pulse formation. If every hop must detect and regenerate and hop decisions are independent, then
+\begin{equation}
+P_{D,\mathrm{end}}^{A}=\prod_{i=1}^{h}P_{D,i}^{A}.
+\label{eq:relay-reliability}
+\end{equation}
+Common timing, source, codebook, software, or market-state failures can violate independence and make the product optimistic. End-to-end false alarm cannot generally be obtained by multiplying per-hop false alarms: under a simple single-false-origin approximation it is bounded by
+\begin{equation}
+P_{FA,\mathrm{end}}^{A}\lesssim\sum_{i=1}^{h}P_{FA,i}^{A}
+\prod_{j=i+1}^{h}P_{D,j}^{A},
+\label{eq:relay-pfa}
+\end{equation}
+while correlated faults or an adversary require a separately measured system-level value. The numerical annual-value objective therefore accepts an explicit end-to-end $P_{FA,\mathrm{end}}^{A}$ rather than inventing one. Cost is at least
+\begin{equation}
+C_h=\sum_{i=1}^{h}C_{\mathrm{pulse},i}
++\sum_{i=1}^{h-1}C_{\mathrm{relay\ infrastructure},i},
+\end{equation}
+plus endpoints, operations, land, safety, and availability reserves.
+
+Relays do not shorten propagation along a fixed geometric route. They may help only if shorter baselines measurably reduce spot size, raise flux density, permit lower pulse energy or smaller detectors, avoid severe attenuation at a selected energy, improve availability, or route around siting constraints. Any benefit must exceed every added delay, failure mode, and facility.
+
+\subsection{Three link models}
+
+The repository evaluates three conceptually distinct models.
+
+\paragraph{Model 1: ideal direct beam.} Selected event yield has no distance penalty beyond a supplied end-to-end value. With identical per-hop performance, splitting adds regeneration delay and multiplies probabilities below one. The direct link weakly dominates unless relays add an external availability or cost benefit. This is a useful upper bound because a relay cannot rescue a distance penalty that has been assumed away.
+
+\paragraph{Model 2: synthetic geometric divergence.} For sensitivity analysis only, let expected selected count on hop $i$ scale as
+\begin{equation}
+\lambda_{s,i}=\kappa\frac{E_{p,i}M_i}{L_i^{\gamma}},
+\label{eq:synthetic-divergence}
+\end{equation}
+with pulse energy proxy $E_{p,i}$, detector-mass proxy $M_i$, synthetic exponent $\gamma>0$, and synthetic conversion $\kappa$. Equation~\eqref{eq:synthetic-divergence} is not a neutrino-beam law. It exposes a trade: equal shorter hops raise each $\lambda_{s,i}$ in the toy model, but success becomes a product and relay delay grows approximately with $h-1$. The optimum can be zero relays, one or more relays, or infeasible depending on the particle, cost, and deadline constraints.
+
+\paragraph{Model 3: literature-informed source and detector.} A source spectrum and angular distribution from a named facility concept, flavor propagation, interaction cross sections, target columns, and measured selection efficiencies should be integrated by Eq.~\eqref{eq:physical-integral}. The directly audited literature does not supply an operating end-to-end regenerative relay or all required source-yield, wall-plug, actuation, receiver, and cost inputs. Consequently, missing cells remain \unknown; the model is a template for evidence, not a completed feasibility estimate.
+
+For architecture $h$, define $\Delta V_h$ by substituting its detection-time sub-density, supplied end-to-end actionable false-alarm probability, pulse cost, infrastructure, and availability into Eq.~\eqref{eq:annual-value}. The implementation charges the conservative all-hop pulse cost on every valid signaling window; any relay pulses caused by null-window false origins must be included in $L_{FA}$ or added separately. Then
+\begin{equation}
+h^*=\begin{cases}
+\arg\max_{h\in\{1,2,\ldots,h_{\max}\}}\Delta V_h,&\max_h\Delta V_h>0,\\
+\varnothing,&\max_h\Delta V_h\le0,
+\end{cases}
+\end{equation}
+subject to safety, siting, authentication, and deadline constraints. In the notation of ``relay count,'' direct is zero relays and corresponds to $h=1$ hop.
+
+The deterministic audit table reports all three treatments. In the named synthetic annual-value scenario, the ideal no-distance-penalty model is maximized by direct $h=1$ at approximately $-2.21\times10^5$ synthetic currency units per year. The geometric-divergence toy model is least negative at $h=6$, approximately $-1.99\times10^5$ per year. Both therefore return $h^*=\varnothing$: ``best in grid'' is not ``investable.'' For the literature-informed treatment, the 2012 direct statistical count mean gives threshold-one $P_D^{\mathrm{stat}}=1-e^{-0.81}\simeq0.555$, but actionable latency, numeric background, authentication, cost, and every regenerative-hop mean remain \unknown. Its $\Delta V_h$ and $h^*$ are not evaluable. These rows are published in \texttt{results/relay\_model\_summary.csv}; no synthetic value is inserted into an evidence gap.
+
+\simfigure{06_relay_phase_diagram.png}{Hop count selected by the full annual incremental-value objective over a synthetic divergence and regeneration-delay grid; nonpositive maxima remain economically infeasible.}{fig:relay}
+
+\section{Reproducible Numerical Experiments}
+
+\subsection{Software contract}
+
+The package targets Python 3.11 or newer and separates probability, detection, arrival, geometry, latency, economics, relay, parameters, simulation, and command-line modules. Arrays use NumPy, distribution functions use SciPy, plots use Matplotlib, and tests use pytest. Seeds are fixed; input validation rejects negative rates, invalid probabilities, nonpositive distances where forbidden, inconsistent thresholds, and non-finite costs. No notebook is required, and no script talks to an exchange, broker, accelerator, detector, proprietary feed, or private dataset.
+
+The first script reproduces the 2012 channel from values reported by Stancil et al. With $\lambda=0.81$, raw one-frame OOK error is
+\begin{equation}
+\frac{e^{-0.81}}{2}=0.222429\ldots,
+\end{equation}
+and pooling $r$ statistically independent frames in the raw model gives $e^{-0.81r}/2$. The paper's approximately 1\% decoded error after two frames is a coded/Viterbi result, not this raw threshold. Its quoted rate uses $40/(2\times92\times2.2)\simeq0.0988$ information bits per second and excludes the 64 synchronization slots from that rough throughput denominator. Counting those slots gives a different protocol-throughput convention. The reproduction reports both without rewriting the historical result.
+
+The same reported proton count and kinetic energy imply about \SI{4.326e5}{\joule} of incident proton kinetic energy per communication pulse and approximately $1.87\times10^{-6}$ registered qualifying events per incident-proton-beam joule. This is a derived audit check, not wall-plug efficiency, emitted-neutrino yield, or a portable link parameter. The source did not report the information needed to convert it into those quantities.
+
+\subsection{Figures and tables}
+
+Eight figures answer separate questions. Figure~\ref{fig:binomial-poisson} quantifies approximation error. Figure~\ref{fig:deadline} converts rates into before-deadline probability. Figure~\ref{fig:roc} couples detection and false alarm. Figure~\ref{fig:arc-chord} prevents geometry from being confused with end-to-end latency. Figure~\ref{fig:value} displays economic sign changes. Figure~\ref{fig:relay} shows when regeneration penalties dominate a synthetic spot-size benefit. Figure~\ref{fig:events-joule} converts a target probability and pulse-energy budget into a qualifying-event-yield requirement. Figure~\ref{fig:hybrid} compares expected action latency and early-trigger probability with conventional fallback.
+
+Generated CSV files record summary values, exact per-figure inputs, scenario parameters, inequalities, the engineering target sheet, and the three-model relay audit. The curated source ledger remains distinct from generated values so running a script cannot transform a synthetic parameter into literature evidence.
+
+\simfigure{08_hybrid_channel_comparison.png}{Expected request-to-action latency and early-trigger probability for conventional-only action versus a probabilistic early trigger with a synthetic fixed non-evidence path latency plus the same fallback.}{fig:hybrid}
+
+\subsection{Interpretation of negative regions}
+
+A red or negative region is not a failed simulation. It is a falsifiable statement about a parameter combination. In particular, increasing $P_D^{A}$ does not guarantee positive value if false alarms, pulse cost, infrastructure, or late evidence dominate. Reducing hop length does not guarantee a better relay if every hop must succeed. A large geometric chord advantage does not guarantee an end-to-end win when source actuation or detector evidence takes longer. These interactions are the reason to publish equations and code instead of a single headline estimate.
+
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{L{0.20\linewidth}L{0.18\linewidth}L{0.16\linewidth}L{0.35\linewidth}}
+\caption{Literature-derived experimental and engineering parameters. Values apply only to the cited system and scope.}\label{tab:literature-parameters}\\
+\toprule
+Parameter & Value & Source & Scope and provenance note \\
+\midrule
+\endfirsthead
+\toprule
+Parameter & Value & Source & Scope and provenance note \\
+\midrule
+\endhead
+Communication baseline & \SI{1.035}{\kilo\metre} & \citet{Stancil2012}, abstract & Includes \SI{240}{\metre} earth; not a trans-Earth test. \\
+Proton pulse/cycle & \SI{8.1}{\micro\second}; \SI{2.2}{\second} & \citet{Stancil2012}, pp. 2 and 6 & Pulse width and scheduled accelerator cycle, not command latency. \\
+Communication-run intensity & $2.25\times10^{13}$ protons/pulse & \citet{Stancil2012}, p. 5 & Proton count is not emitted-neutrino count. \\
+Selected count mean & 0.81 events/on pulse & \citet{Stancil2012}, p. 5 & Specific spectrum, geometry, upstream rock, detector, and selection. \\
+Detector mass & 170 t full; 3 t tracker & \citet{Stancil2012}, pp. 3--4 & Neither is an effective communication target mass by itself. \\
+Track reconstruction & greater than 95\% & \citet{Stancil2012}, p. 4 & Long selected muon tracks only. \\
+Timestamp granularity & few ns in communication paper & \citet{Stancil2012}, p. 5 & Interaction timing, not authenticated decision latency. \\
+DAQ frame readout & approximately \SI{500}{\micro\second}/frame & \citet{Perdue2012}, Sec. 2 & Legacy gated bulk acquisition; a typical physics gate averaged 1,200 frames. \\
+High-energy attenuation & measured over \SIrange{6.3}{980}{\tera\electronvolt} & \citet{IceCube2017} & Demonstrates energy- and chord-dependent Earth absorption. \\
+Direct mass bound & $m_{\beta}<\SI{0.45}{\electronvolt}$ at 90\% CL & \citet{KATRIN2025} & Effective electron-antineutrino mass; not a source-speed measurement. \\
+Historical Chicago--NY improvement & about \SI{3}{\milli\second} & \citet{Laughlin2014}, abstract & 2010--2012 market-response inference; not a current route quote. \\
+LSE race sample & 43 days; about 2.2 billion messages & \citet{Aquilina2022}, Sec. II & 2015 UK equities; not this project's opportunity sample. \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\begin{table}[htbp]
+\centering
+\caption{Synthetic scenario families used to exercise the equations. Every generated result is \simonly.}
+\label{tab:synthetic}
+\begin{tabularx}{\linewidth}{L{0.30\linewidth}L{0.25\linewidth}Y}
+\toprule
+Parameter & Illustrative range & Purpose \\
+\midrule
+$\lambda_s$ & 0.01--10 events/gate & Missed-trigger through saturation behavior \\
+$\lambda_b$ & $10^{-6}$--1 event/gate & False-alarm and ROC behavior \\
+Threshold $m$ & 1--5 & Speed versus background suppression \\
+Evidence deadline & \SI{1}{\micro\second}--\SI{100}{\milli\second} & Required-rate surfaces \\
+Central angle & 0--$\pi$ & Arc/chord geometry \\
+Fiber speed & $2.0\times10^8$ m/s & Simplified medium, not a route claim \\
+Opportunity curve & Exponential examples & Nonlinear value decay, not measured alpha \\
+Relay exponent/cost/delay & Synthetic grids & Mathematical phase boundaries only \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Engineering Break-Even Targets}
+
+The companion \texttt{research-targets.md} is the program's primary gap sheet. It refuses to substitute one facility's timestamp, mass, or beam power for an integrated metric. Four quantities dominate the first measurement campaign:
+
+\begin{enumerate}[leftmargin=*]
+  \item the distribution from an authorized external request to a characterized neutrino pulse;
+  \item qualifying reconstructed and authenticated events per wall-plug joule before a deadline;
+  \item the complete detector evidence-to-action latency and null-window false-trigger distribution; and
+  \item an endpoint-specific best electromagnetic route and market-value curve measured on the same decision definition.
+\end{enumerate}
+
+Without all four, a propagation comparison cannot establish engineering or economic feasibility.
+
+\begin{table}[htbp]
+\centering
+\caption{Break-even inequalities and interpretation.}
+\label{tab:inequalities}
+\begin{tabularx}{\linewidth}{L{0.42\linewidth}Y}
+\toprule
+Inequality & Interpretation \\
+\midrule
+$\tau_\nu<\tau_{\mathrm{EM}}$ & Complete request-to-action path must beat the best EM path. \\
+$P_D^{\mathrm{stat}}(m,t_d)\ge q$, $P_{FA}^{\mathrm{stat}}(m,t_d)\le\alpha$, then Eqs.~\eqref{eq:auth-pd}--\eqref{eq:auth-pfa} & Statistical and actionable constraints are distinct and simultaneous. \\
+$N_\nu p_{\mathrm{eff}}\ge-\ln(1-q)$ & Threshold-one small-$p$, zero-background particle requirement. \\
+$C_{\mathrm{pulse}}^{A}<\mathbb{E}[\Delta G]$ & A valid opportunity must first cover sequence-level marginal signaling cost. \\
+Eq.~\eqref{eq:key-break-even} & Annual surplus must cover false triggers, fixed cost, and operations. \\
+$C_0\le C_{0,\max}$ in Eq.~\eqref{eq:capex} & Finite-horizon operating surplus bounds CAPEX. \\
+$\Delta V_h>\Delta V_1$ & A relay needs measured benefits exceeding regeneration penalties. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\begin{longtable}{L{0.16\linewidth}L{0.21\linewidth}L{0.20\linewidth}L{0.12\linewidth}L{0.16\linewidth}}
+\caption{Condensed subsystem gap and falsifier table. The full target sheet contains uncertainty and research levers.}\label{tab:gaps}\\
+\toprule
+Subsystem & Verified baseline & Required target & Gap & Falsifier \\
+\midrule
+\endfirsthead
+\toprule
+Subsystem & Verified baseline & Required target & Gap & Falsifier \\
+\midrule
+\endhead
+Source actuation & \unknown; scheduled cycle is not actuation & Fits residual budget in Eq.~\eqref{eq:nu-latency} & \unknown & Safe lower bound alone exceeds $\tau_{\mathrm{EM}}$ \\
+Yield per joule & Incident-proton-energy check only & Joint event/deadline/cost contour & \unknown & Verified upper bound below contour \\
+Beam spot & Few metres near \SI{1}{\kilo\metre} in 2012 setup & Receiver fluence adequate at target baseline & No transferable law & Source kinematics exclude needed spot \\
+Detector & 170 t instrument plus external-rock contribution & Sitable mass/area with target $P_D^{A}$ & \unknown & Required footprint erases last-mile gain \\
+Background and authentication & ``Negligible'' but unquantified in anchor & Annual false-trigger loss below surplus & \unknown & Confidence bound exceeds tolerance \\
+Decision latency & Few-ns timestamp; legacy bulk DAQ & Evidence/action quantile before fallback & \unknown & Target quantile is later than EM \\
+EM baseline & Historical and modeled corridors exist & Current named-endpoint audit & Case-specific & Credible EM route always wins \\
+Market value & Historical race evidence, not project value & Positive finite-horizon incremental surplus & \unknown & Upper value bound is nonpositive \\
+Relay & No demonstrated regenerative link found & Measured $\Delta V_h>\Delta V_1$ & Literature gap & Full relay penalty dominates all benefits \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+The term ``current baseline'' does not imply that the 2012 facility is the best possible current source or detector. It is the directly verified communication anchor. A later source can replace a row only with an audited measurement under a compatible definition.
+
+\section{Market Design, Externalities, and Commercialization Risk}
+
+\subsection{Private rent is not social surplus}
+
+Latency arbitrage can be privately valuable while expenditure on marginal speed is socially duplicative. In the Budish--Cramton--Shim model, continuous serial processing creates repeated races and frequent batch auctions can replace competition on speed with competition on price \citep{Budish2015}. Aquilina et al. report that races were economically material in their 2015 LSE data and extrapolate a 2018 global-equity latency-arbitrage scale of about \$4.8 billion, with a \$2.3--8.4 billion sensitivity range \citep{Aquilina2022}. This is an author extrapolation, not a permanent pool, not the expected value of this link, and not the amount a single actor can capture.
+
+Other empirical work associates some identified HFT activity with price discovery \citep{Brogaard2014}, illustrating why ``HFT'' and ``latency arbitrage'' cannot be treated as synonyms. A social evaluation must ask whether the trigger improves price discovery or liquidity, transfers rents from liquidity providers and investors, increases adverse selection, raises entry barriers, or adds operational fragility. It must also count energy, underground construction, specialized facilities, detector materials, land, maintenance, and decommissioning. No result in this package establishes positive social surplus.
+
+\subsection{Market design can eliminate the customer}
+
+Commercialization is exposed to endogenous response. An exchange can introduce a deterministic or randomized speed bump, discrete or periodic auctions, different priority rules, or a frequent-batch design. U.S. regulatory records document approval pathways for intentional access delay and \SI{100}{\milli\second} periodic auctions \citep{SEC2016,SEC2021}; these examples establish implementability, not universal welfare gains. Exchange incentives may also delay socially beneficial redesign, so reform is possible rather than inevitable \citep{BudishLeeShim2024}. Competitors can copy the technology and compress the gain. Markets can consolidate or reduce fragmentation, while rules can change the legality or usefulness of a predefined response. The economic horizon may therefore be much shorter than the physical infrastructure life.
+
+Scenarios should include at least: exclusive early adoption, rapid competitive diffusion, an exchange speed bump, frequent batch auctions, reduced fragmentation, and regulation that increases cost or removes the trade. Each scenario changes $G(t)$, $\rho_1$, $\rho_0$, $L_{FA}$, and horizon $Y$ rather than merely changing a discount rate. A physically successful system can become economically obsolete before commissioning.
+
+\subsection{HFT as customer versus application}
+
+The hypothesis ``HFT could fund early development'' is different from ``HFT is a socially desirable final application.'' A private willingness to pay might cross-subsidize source timing, beam monitoring, detector readout, particle-counting communication, or calibration research with broader scientific use. Such spillovers require their own evidence, governance, and attribution; they do not retroactively turn rent seeking into social benefit. Nonfinancial applications through obstructing matter, navigation, planetary occultation, or emergency signaling have been discussed in prior literature \citep{Stancil2012,Huber2010}, but they are not evaluated here and are not used to rescue a failed market hypothesis.
+
+\section{Limitations and Falsification Conditions}
+
+\subsection{Model limitations}
+
+The independent-particle model ignores correlated production, alignment, detector, and reconstruction states. Poisson background ignores bursts, adversarial faults, look-elsewhere effects across many gates, and dead-time dependence. The fixed-rate sequential likelihood is valid only for specified homogeneous rates. The spherical Earth omits density profile, topography, source depth, and geotechnical routing. The synthetic beam-spread model is not accelerator physics. Economic curves are not estimates. Product-form relay reliability may be optimistic. No simulator result grants radiation, excavation, deployment, exchange, broker, or trading authority.
+
+The literature search is bounded by the 2026-08-26 cutoff and the documented source hierarchy. It found a directly demonstrated low-rate link and extensive source, detector, cross-section, oscillation, attenuation, timing, and market-design literature, but no operating regenerative neutrino communication mesh and no integrated market-trigger system. Absence from the bounded search is not proof of universal absence. This paper consequently avoids ``first'' and reports narrower claims as proposals.
+
+\subsection{Decisive falsifiers}
+
+The commercial hypothesis should be rejected rather than indefinitely deferred if independent measurement supports any of the following under the relevant endpoint and decision definition:
+
+\begin{enumerate}[leftmargin=*]
+  \item The lower bound on feed, source actuation, particle production, DAQ, classification, authentication, and local routing is at least the best electromagnetic latency before any interaction wait is added.
+  \item A calibrated upper bound on qualifying authenticated events per wall-plug joule cannot reach the joint $P_D^{A}$, deadline, and sequence-cost contour for any viable detector.
+  \item The upper confidence bound on annual false-trigger loss exceeds the upper confidence bound on valid early-trigger gain.
+  \item The detector mass, accepted surrounding volume, source facility, or standoff distance required for adequate counts makes the endpoint last mile slower than the geometric advantage.
+  \item Neither direct nor any relay architecture has positive end-to-end incremental value after full detection, authentication, regeneration, infrastructure, and failure correlation.
+  \item The relevant alpha half-life is shorter than the best achievable authenticated decision-time quantile.
+  \item Competitive diffusion or exchange redesign reduces finite-horizon surplus below marginal operation and maintenance cost.
+  \item An independent reference-class cost estimate yields negative NPV even with zero purchase price for the core source and detector.
+\end{enumerate}
+
+These conditions are specific enough to be contradicted or supported. Replacing a failed detector with an unlimited detector, a failed source with zero actuation time, or a vanished market with a permanent synthetic profit pool defines a different hypothesis.
+
+The regenerative-mesh sub-hypothesis has a narrower falsifier: if every relay architecture has lower end-to-end value than direct after full regeneration accounting, relays are rejected even though the direct-link hypothesis may remain open.
+
+\subsection{Present feasibility verdict}
+
+\begin{table}[htbp]
+\centering
+\caption{Present-day verdict at the research cutoff.}
+\begin{tabularx}{\linewidth}{L{0.29\linewidth}Y}
+\toprule
+Dimension & Verdict \\
+\midrule
+Physical possibility & \textbf{Established in principle} for low-rate neutrino communication; partially established for relevant source and detector subsystems. \\
+Present engineering feasibility & \textbf{Unsupported.} Integrated on-demand source latency, deadline yield per wall-plug joule, compact receiver decision latency, and authentication are not established. \\
+Present HFT feasibility & \textbf{Negative under the directly verified 2012 anchor}; otherwise indeterminate only where required future parameters remain unknown, not presumptively positive. \\
+Dominant physical bottleneck & Qualifying reconstructed and authenticated interactions delivered before the EM deadline, including source actuation and evidence accumulation. \\
+Dominant economic bottleneck & Durable incremental value after best-EM competition, false-trigger loss, pulse cost, CAPEX, and endogenous market redesign. \\
+Break-even trigger & Eq.~\eqref{eq:key-break-even} positive with evidence-bounded inputs and Eq.~\eqref{eq:latency-break-even} satisfied at the relevant quantile. \\
+Falsification condition & Any independently verified lower bound or cost/false-trigger upper bound that makes those inequalities impossible. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The negative anchor verdict is not based on a claim that the 2012 apparatus was designed for trading. It follows because that demonstrated system relied on a scheduled \SI{2.2}{\second} accelerator cadence, mean 0.81 selected events per on pulse, repeated frames, and a legacy bulk DAQ, while specialized intermarket electromagnetic improvements and race windows are measured in milliseconds and microseconds \citep{Laughlin2014,Aquilina2022}. A hypothetical future system requires new measurements, not a relabeling of that experiment.
+
+\section{Research Roadmap}
+
+The roadmap is a sequence of evidence gates, not a construction plan.
+
+\paragraph{Gate 0: mathematical audit.} Independently reproduce the exact binomial, Poisson, threshold, first-arrival, sequential, geometry, relay, and economic equations. Verify units, monotonicity, boundary behavior, and approximation error. Reject any figure whose synthetic status is ambiguous.
+
+\paragraph{Gate 1: source and detector evidence inventory.} For named existing or proposed systems, record spectrum, angular yield, energy accounting boundary, pulse formation, timing, detector target column, selection, background, dead time, DAQ, and reconstruction. Keep timestamps separate from decisions. Rows without locators remain unknown.
+
+\paragraph{Gate 2: non-operational timing study.} Using existing published traces or an institutionally approved synthetic/digital-twin environment, estimate the distribution of request-to-characterized-pulse and qualifying-event-to-authenticated-decision latency. This paper provides no equipment procedure and no authorization to generate radiation.
+
+\paragraph{Gate 3: endpoint and comparator audit.} Choose a named research endpoint pair only under legal and institutional review. Measure or bound price-discovery feed, source last mile, best electromagnetic routes, receiver last mile, and equal-scope decisions. Commodity Internet is not an acceptable strawman.
+
+\paragraph{Gate 4: pre-registered economic falsification.} Specify opportunity definition, null windows, $G(t)$, costs, fees, impact, false-trigger loss, competition scenarios, market-design changes, confidence intervals, and stop rules before examining outcomes. No live orders are required or authorized.
+
+\paragraph{Gate 5: architecture decision.} Compute direct and relay value with measured full regeneration latency. Advance a relay only if the benefit is attributable to a verified flux, detector, attenuation, availability, routing, or cost mechanism. ``Shorter hops'' alone is insufficient.
+
+\paragraph{Gate 6: independent human review.} Physics, accelerator, detector, radiation-safety, geotechnical, market-microstructure, legal, compliance, security, and social-welfare reviewers must examine evidence in their domains. Repository acceptance is not experimental approval.
+
+The first genuine technical milestone is not a longer paper. It is an independently auditable upper confidence bound on wall-plug joules per authenticated qualifying decision before a stated deadline, paired with a measured false-trigger bound and source-command latency. The first genuine economic milestone is positive Eq.~\eqref{eq:key-break-even} against a current best electromagnetic route over a finite horizon. Either milestone can fail decisively.
+
+\section{Conclusion}
+
+Weak interaction is simultaneously the attraction and the burden of neutrino communication. It permits propagation through matter but makes early evidence expensive in particle count, target, and time. Reframing the channel as a probabilistic positive trigger with a conventional fallback improves the decision problem: a miss normally forfeits only incremental speed, and the reliable path preserves full information. It does not remove false-trigger loss, authentication, source actuation, detector accumulation, endpoint placement, or cost.
+
+The central $1-1/e$ observation is real but narrow. One expected qualifying event gives approximately 63.2\% threshold-one detection only under independent small-probability trials and zero background. A commercial system needs a specified deadline distribution, a false-alarm constraint, and positive conditional utility. Its propagation advantage must survive the complete latency chain. Its gross gain must be incremental to the best electromagnetic route. Its finite-horizon value must survive pulse and infrastructure cost, competition, and market redesign. Its social case must be evaluated separately from private rent.
+
+The verified record supports a clear verdict. Neutrino communication is physically demonstrated in principle. The audited evidence does not support present engineering feasibility for a latency-sensitive market trigger, and the 2012 demonstrated architecture is not competitive with the relevant timing scale. The dominant research variable is authenticated qualifying events per wall-plug joule before a hard deadline, including source-command and decision latency. If that joint quantity cannot cross Eq.~\eqref{eq:key-break-even} before a best-in-class electromagnetic fallback, the commercial theory should be abandoned. The scientific value of the framework is precisely that it says where, and why, to stop.
+
+\section*{Acknowledgment and AI-assistance disclosure}
+
+OpenAI Codex assisted with literature organization, software implementation, and drafting. All claims, citations, calculations, and interpretations require human review. No AI system is an author.
+
+\appendix
+\section{Mathematical Derivations}
+
+\subsection{Binomial-to-Poisson limit and error}
+
+For $N$ independent Bernoulli trials with event probability $p$,
+\begin{equation}
+P(K=0)=(1-p)^N=\exp\{N\ln(1-p)\}.
+\end{equation}
+Using $\ln(1-p)=-p-p^2/2-p^3/3-\cdots$,
+\begin{equation}
+(1-p)^N=e^{-Np}\exp\left[-N\left(\frac{p^2}{2}+\frac{p^3}{3}+\cdots\right)\right].
+\end{equation}
+At fixed $\lambda=Np$, the exponent correction begins at $-\lambda p/2$, so the Poisson approximation converges as $p\rightarrow0$. The test suite compares exact and approximate values over finite $N,p$ and handles $p=0$ and $p=1$ explicitly.
+
+\subsection{Poisson tails}
+
+If $K\sim\operatorname{Poisson}(\lambda)$, then
+\begin{equation}
+P(K\ge m)=1-P(K\le m-1)=1-e^{-\lambda}\sum_{j=0}^{m-1}\frac{\lambda^j}{j!}.
+\end{equation}
+Substituting $\lambda_s+\lambda_b$ or $\lambda_b$ yields Eqs.~\eqref{eq:pd} and \eqref{eq:pfa}. For a homogeneous process over time $t$, $\lambda=\mu t$, yielding the $m$th-arrival CDF in Eq.~\eqref{eq:mth-arrival}.
+
+\subsection{Poisson-process likelihood ratio}
+
+The likelihood of observing $N(t)=n$ under rate $\mu_i$ is proportional to $e^{-\mu_i t}\mu_i^n$; event-time factors common to homogeneous hypotheses cancel. Therefore
+\begin{equation}
+\ln\frac{L_1}{L_0}=n\ln\frac{\mu_1}{\mu_0}-(\mu_1-\mu_0)t,
+\end{equation}
+which is Eq.~\eqref{eq:poisson-llr}. The zero-background case requires separate treatment because an observed event has zero likelihood under an exact $\mu_0=0$ model. Real authentication and correlated faults make exact zero implausible.
+
+\subsection{Detection-time density for a count threshold}
+
+For rate $\mu>0$, differentiating Eq.~\eqref{eq:mth-arrival} gives
+\begin{equation}
+f_{T_m}(t)=\frac{\mu^m t^{m-1}e^{-\mu t}}{(m-1)!},\qquad t\ge0.
+\end{equation}
+For the one-positive-slot special case, let $\tau_f$ contain every non-accumulation term from the originating request to action: feed and market classification, source command and actuation, production and propagation, DAQ/reconstruction, authentication decode, clock/synchronization margin, decision, and local routing. Then $T_A=\tau_f+T_m$. For a codeword, replace $T_m$ with $T_{\mathrm{seq}}$. Economic integration uses the shifted full-action density and truncates at $\tau_{\mathrm{EM}}$; it must not pretend accumulation starts at the originating market event when the source has not yet produced a pulse.
+
+\subsection{Break-even false-alarm rate}
+
+Rearranging Eq.~\eqref{eq:annual-value}, a positive annual value with $\rho_0L_{FA}>0$ requires
+\begin{equation}
+P_{FA}^{A}<\frac{\rho_1[\mathbb{E}(\Delta G)-C_{\mathrm{pulse}}^{A}]-C_{\mathrm{fixed}}-C_{\mathrm{operate}}}{\rho_0L_{FA}},
+\end{equation}
+and the numerator must be positive. This exposes why low prior signal probability and many null gates can demand a much smaller false-trigger rate than ordinary bit-error optimization suggests.
+
+\section{Parameter Provenance}
+
+The human-readable source audit and machine-readable CSV record each load-bearing value, unit, uncertainty, source type, exact page/section/equation/table, verification date, and evidence class. The repository uses the following rules:
+
+\begin{itemize}[leftmargin=*]
+  \item A citation key without a supporting locator is insufficient.
+  \item A source's estimate remains an estimate; a derived conversion is labeled inferred.
+  \item Conflicting reliable sources are reported with their scopes rather than averaged for convenience.
+  \item Synthetic economic and link values never enter the literature-derived table.
+  \item Generated files cannot overwrite the curated provenance ledger.
+  \item Values unavailable at the cutoff remain \unknown, \texttt{NOT ESTABLISHED}, or \texttt{LITERATURE GAP}.
+\end{itemize}
+
+The most consequential missing provenance rows are on-demand source latency, emitted useful neutrinos per wall-plug joule and solid angle, long-baseline accepted flux, qualifying events per joule per deadline, receiver action latency, authenticated background and fault rate, endpoint-specific best EM latency, incremental value per early action, opportunity rate, pulse variable cost, and full infrastructure cost.
+
+\section{Reproduction Instructions}
+
+From the project directory, using Python 3.11 or newer:
+
+\begin{verbatim}
+make install
+make test
+make figures
+make paper
+make all
+\end{verbatim}
+
+The 2012 anchor can be reproduced separately:
+
+\begin{verbatim}
+python scripts/reproduce_2012_channel.py
+\end{verbatim}
+
+Figures and generated tables use deterministic seeds and explicit parameters. The test suite covers exact versus approximate probability, $1-e^{-1}$, threshold detection and false alarm, first and higher arrivals, Earth arc/chord geometry, latency composition, economic break-even and NPV, relay probability, units, monotonicity, boundaries, and invalid inputs. The artifact uses Tectonic 0.17.0, which runs the required bibliography passes; the workflow downloads its official release archive and verifies the published SHA-256 digest before compiling. No network is required after the exact Python dependencies, Tectonic binary and TeX bundle, and source files are obtained.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

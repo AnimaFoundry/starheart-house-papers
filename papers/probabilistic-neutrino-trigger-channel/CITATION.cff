@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this package, please cite the concept paper in preferred-citation."
+title: "When One Bit Is Enough: Probabilistic Neutrino–Electromagnetic Trigger Channels for Latency-Sensitive Markets"
+type: software
+authors:
+  - name: AnimaFoundry
+version: "0.1.0"
+date-released: "2026-08-27"
+repository-code: "https://github.com/AnimaFoundry/starheart-house-papers"
+license: CC0-1.0
+keywords:
+  - neutrino communication
+  - Poisson channel
+  - deadline-constrained detection
+  - latency economics
+  - market microstructure
+  - research-only simulation
+abstract: >-
+  A decision-theoretic concept framework for a probabilistic neutrino early trigger
+  backed by a reliable conventional electromagnetic fallback. The project makes no
+  present feasibility claim and contains literature synthesis and simulation only.
+preferred-citation:
+  type: report
+  title: "When One Bit Is Enough: Probabilistic Neutrino–Electromagnetic Trigger Channels for Latency-Sensitive Markets"
+  authors:
+    - name: AnimaFoundry
+  year: 2026
+  url: "https://github.com/AnimaFoundry/starheart-house-papers"

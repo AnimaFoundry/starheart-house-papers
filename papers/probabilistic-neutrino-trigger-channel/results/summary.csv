@@ -1,0 +1,6 @@
+metric,value,unit,evidence_status,notes
+stancil_2012_signal_mean,0.81,event/pulse,estimated in primary paper,Reproduction anchor; not a present market-link parameter.
+stancil_2012_ook_capacity,0.3674542886634718,bit/pulse,reproduced from primary-paper equation,Zero-background OOK capacity at lambda=0.81.
+one_over_e_threshold_one_limit,0.6321205588285577,probability,analytic,threshold one; independent constant-p particles; small p_eff; zero background
+ideal_90_degree_arc_minus_chord_time,0.0033275980282709357,s,analytic geometry,"Geometry only; excludes all source, detector, routing, and decision latency."
+illustrative_annual_incremental_value,1908602.7951427884,arbitrary currency/year,SYNTHETIC,SIMULATION_ONLY; illustrative assumptions; not measured system performance.
