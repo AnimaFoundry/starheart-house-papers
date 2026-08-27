@@ -1,0 +1,6 @@
+quantity,inequality,interpretation,scope
+threshold-one deadline rate,mu_s >= -ln(1-q)/t_d,Zero-background signal rate needed for one qualifying arrival by deadline t_d.,analytic; threshold one; homogeneous independent Poisson events
+latency advantage,tau_EM - tau_nu > 0,"Complete neutrino decision path must beat the best EM fallback, not merely its propagation term.",full end-to-end accounting
+annual incremental value,rho1(E[Delta G]-C_pulse) - rho0 P_FA L_FA - C_fixed - C_operate > 0,"Early-trigger gains must exceed pulse, false-trigger, fixed, and operating costs.",incremental versus conventional fallback
+relay selection,h* = argmax_h Delta V_h,"A relay is justified only if flux/detector gains exceed compounded misses, regeneration delay, and cost.",independent-hop reliability is an explicit approximation
+events per joule,eta_q >= -ln(1-q)/E_pulse,"Threshold-one, zero-background qualifying-event yield required per pulse joule.",SIMULATION_ONLY; illustrative assumptions; not measured system performance.

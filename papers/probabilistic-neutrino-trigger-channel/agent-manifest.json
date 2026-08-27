@@ -1,0 +1,62 @@
+{
+  "document_type": "probabilistic_neutrino_trigger_channel_agent_manifest",
+  "schema_version": "0.1.0",
+  "project": {
+    "id": "org.animafoundry.probabilistic-neutrino-trigger-channel",
+    "name": "When One Bit Is Enough",
+    "repository": "https://github.com/AnimaFoundry/starheart-house-papers",
+    "project_path": "papers/probabilistic-neutrino-trigger-channel",
+    "status": "CONCEPT",
+    "mode": "RESEARCH_ONLY",
+    "capability_level": "L0",
+    "review_status": "NOT PEER REVIEWED",
+    "research_cutoff": "2026-08-26"
+  },
+  "truthfulness": {
+    "current_feasibility_claim": false,
+    "physical_system_exists": false,
+    "market_system_exists": false,
+    "empirical_project_results_available": false,
+    "live_market_access": false,
+    "physical_operation_authority": false,
+    "deployment_authorization": false,
+    "evidence": [
+      "literature_synthesis",
+      "SIMULATION_ONLY"
+    ],
+    "synthetic_outputs_are_capability_evidence": false
+  },
+  "central_question": "Can a neutrino link become economically useful as a probabilistic early-trigger channel before it becomes a reliable general-purpose communication system?",
+  "architecture": {
+    "neutrino_channel": "probabilistic positive early trigger",
+    "electromagnetic_channel": "reliable full-information fallback and reconciliation",
+    "non_detection_semantics": "wait for fallback; never infer an authenticated zero from absence alone",
+    "comparison_baseline": "best technically plausible electromagnetic route"
+  },
+  "authority": {
+    "agent_may_run_offline_simulation": true,
+    "agent_may_improve_documentation": true,
+    "agent_may_add_verified_literature": true,
+    "agent_may_connect_live_exchange_or_broker": false,
+    "agent_may_submit_real_orders": false,
+    "agent_may_operate_accelerator_or_detector": false,
+    "agent_may_convert_synthetic_parameters_to_claims": false,
+    "repository_merge_grants_experimental_authority": false
+  },
+  "required_distinctions": [
+    "vision_vs_capability_vs_evidence_vs_authorization",
+    "interaction_timestamp_resolution_vs_request_to_decision_latency",
+    "raw_event_vs_qualifying_event_vs_statistical_trigger_vs_authenticated_trigger",
+    "physical_vs_engineering_vs_private_economic_vs_market_design_vs_social_feasibility",
+    "measured_vs_estimated_vs_inferred_vs_synthetic"
+  ],
+  "entrypoints": {
+    "human": "README.md",
+    "agent": "llms.txt",
+    "agent_contract": "AGENTS.md",
+    "safety": "SAFETY.md",
+    "paper": "paper/main.tex",
+    "targets": "research-targets.md",
+    "source_audit": "docs/source-audit.md"
+  }
+}

@@ -7,6 +7,7 @@ Public research notes, speculative engineering proposals, and machine-readable i
 | Year | Project | Human entry | Agent entry | Status |
 | --- | --- | --- | --- | --- |
 | 2026 | 三清机匠 / Sanqing Fabricator | [Read the proposal](papers/sanqing-fabricator/README.md) | [Read `llms.txt`](papers/sanqing-fabricator/llms.txt) | `CONCEPT` · `RESEARCH_ONLY` |
+| 2026 | When One Bit Is Enough | [Read the concept paper](papers/probabilistic-neutrino-trigger-channel/README.md) | [Read `llms.txt`](papers/probabilistic-neutrino-trigger-channel/llms.txt) | `CONCEPT` · `RESEARCH_ONLY` · `L0` |
 
 ## Reading rules
 

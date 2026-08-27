@@ -9,6 +9,11 @@ Projects:
   Agent: papers/sanqing-fabricator/llms.txt
   Manifest: papers/sanqing-fabricator/agent-manifest.json
   Status: CONCEPT / RESEARCH_ONLY / capability L0
+- When One Bit Is Enough
+  Human: papers/probabilistic-neutrino-trigger-channel/README.md
+  Agent: papers/probabilistic-neutrino-trigger-channel/llms.txt
+  Manifest: papers/probabilistic-neutrino-trigger-channel/agent-manifest.json
+  Status: CONCEPT / RESEARCH_ONLY / capability L0 / NOT PEER REVIEWED / NO CURRENT FEASIBILITY CLAIM
 
 Interpretation rules:
 - A goal, roadmap item, issue, example, or model output is not a capability claim.

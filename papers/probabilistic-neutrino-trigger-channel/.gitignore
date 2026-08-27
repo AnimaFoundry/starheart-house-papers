@@ -1,0 +1,17 @@
+.venv/
+.matplotlib-cache/
+fontconfig-cache/
+.pytest_cache/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+tmp/
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out

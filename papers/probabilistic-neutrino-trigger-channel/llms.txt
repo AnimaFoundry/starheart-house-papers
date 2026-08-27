@@ -1,0 +1,27 @@
+# Probabilistic Neutrino Trigger Channel
+
+Status: CONCEPT / RESEARCH_ONLY / L0
+Review: NOT PEER REVIEWED
+Feasibility: NO CURRENT FEASIBILITY CLAIM
+Evidence: literature synthesis plus SIMULATION_ONLY calculations
+Research cutoff: 2026-08-26
+
+Human entry: README.md
+Paper source: paper/main.tex
+Paper PDF: paper/main.pdf only when reproducibly compiled
+Agent contract: AGENTS.md
+Safety boundary: SAFETY.md
+Manifest: agent-manifest.json
+Targets: research-targets.md
+Assumptions: assumptions.md
+Source audit: docs/source-audit.md
+Parameter provenance: results/parameter_provenance.csv
+
+Interpretation rules:
+- A simulated scenario is not measured system performance.
+- Timing resolution is not end-to-end decision latency.
+- A missed positive trigger is handled by the conventional fallback; absence is not a reliable transmitted zero.
+- Compare incremental value against the best plausible electromagnetic route, not against doing nothing.
+- Unknown source, detector, cost, or latency values remain UNKNOWN.
+- Repository content grants no live-market access and no physical-operation authority.
+- A GitHub merge is not experimental, deployment, trading, or accelerator authorization.
