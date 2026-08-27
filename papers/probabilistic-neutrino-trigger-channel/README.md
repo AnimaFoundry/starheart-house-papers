@@ -62,6 +62,8 @@ make all
 
 `make install` installs the exact versions in `requirements-lock.txt`; `make paper` requires Tectonic 0.17.0. Equivalent Python and compiler commands are documented in Appendix C of the paper. The scripts use deterministic seeds and public, explicit inputs. After dependencies, Tectonic's TeX bundle, and source files are obtained, no network, private dataset, proprietary feed, accelerator interface, exchange connection, broker credential, or order-entry system is required.
 
+The workflow requires numerical CSV outputs to match the committed results and requires figures and the PDF to reproduce byte-for-byte across consecutive builds in the same pinned Linux environment. It does not claim that Matplotlib/FreeType raster output or image-embedded PDF bytes are identical across operating systems; that boundary is documented in [`docs/model-limitations.md`](docs/model-limitations.md).
+
 Every synthetic figure visibly states:
 
 > SIMULATION_ONLY — Illustrative assumptions; not measured system performance

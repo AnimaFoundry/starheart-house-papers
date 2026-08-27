@@ -52,21 +52,33 @@ jobs:
       - name: Run tests
         run: python -m pytest
 
-      - name: Reproduce numerical artifacts
-        run: make figures tables reproduce
-
-      - name: Verify generated artifacts are current
+      - name: Reproduce numerical artifacts twice
         run: |
-          git diff --exit-code -- figures results
-          test -z "$(git status --porcelain --untracked-files=all -- figures results)"
+          make figures tables reproduce
+          find figures results -type f -print0 | sort --zero-terminated | xargs --null sha256sum > "$RUNNER_TEMP/artifacts-first.sha256"
+          make figures tables reproduce
+          find figures results -type f -print0 | sort --zero-terminated | xargs --null sha256sum > "$RUNNER_TEMP/artifacts-second.sha256"
+
+      - name: Verify generated artifacts
+        run: |
+          diff --unified "$RUNNER_TEMP/artifacts-first.sha256" "$RUNNER_TEMP/artifacts-second.sha256"
+          git diff --exit-code -- results
+          test -z "$(git status --porcelain --untracked-files=all -- results)"
+          python -m pytest tests/test_artifacts.py
 
       - name: Compile paper with Tectonic 0.17.0
         run: |
           rm --force paper/main.pdf
           make paper
+          test -s paper/main.pdf
+          cp paper/main.pdf "$RUNNER_TEMP/main-first.pdf"
+          rm --force paper/main.pdf
+          make paper
 
-      - name: Verify paper was rebuilt
+      - name: Verify deterministic paper rebuild
         run: |
           test -s paper/main.pdf
-          git diff --exit-code -- paper/main.pdf
-          test -z "$(git status --porcelain --untracked-files=all -- paper/main.pdf)"
+          cmp "$RUNNER_TEMP/main-first.pdf" paper/main.pdf
+          if grep --ignore-case --extended-regexp 'LaTeX Warning|Overfull|Underfull|undefined references|undefined citations' paper/main.log; then
+            exit 1
+          fi

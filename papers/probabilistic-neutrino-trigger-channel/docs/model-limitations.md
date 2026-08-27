@@ -33,3 +33,9 @@ This package is an auditable feasibility calculator, not a validated source, det
 ## Evidence limitations
 
 The 2012 experiment is a strong proof of communication in principle but a weak numerical proxy for the proposed use case. Missing integrated source latency, yield per joule, long-baseline beam profile, detector decision latency, authenticated false-trigger rate, infrastructure cost, and market value are not imputed. They remain research targets.
+
+## Reproducibility limitations
+
+- Numeric CSV outputs are required to match the committed results across the tested Windows and Linux environments.
+- Matplotlib raster bytes can vary across operating systems because FreeType, font discovery, and PNG encoding are platform components even when plotted data and package versions are fixed. The CI therefore requires two consecutive Linux figure generations to have identical SHA-256 hashes and reruns the artifact-content tests after generation.
+- The committed PDF was compiled and visually inspected on Windows with Tectonic 0.17.0. CI independently requires two consecutive Linux Tectonic builds to be byte-identical and warning-free. Cross-operating-system byte identity is not claimed because the PDF embeds platform-rendered PNG figures.
