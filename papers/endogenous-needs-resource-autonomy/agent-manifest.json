@@ -1,62 +1,133 @@
 {
   "title": "Endogenous Needs and Resource Autonomy in a Mixed Human and Agent Economy",
-  "subtitle": "Distributed Resilience and Recurrent Contestability",
+  "subtitle": "Measuring Demand Formation, Authorized Spending, and Service Reliability",
+  "edition": 7,
   "author": "Anonymous",
-  "edition": 3,
   "language": "en",
-  "work_type": "conceptual discussion paper",
+  "work_type": "technical research proposal",
+  "editorial_parent_edition": 6,
+  "previously_published_edition": 3,
+  "previous_edition_commit": "7d15922d022a9335ae065a8d07acd942ab69070a",
   "peer_reviewed": false,
   "prototype_executed": false,
   "new_empirical_results": false,
   "keywords": [
     "Agent economy",
-    "endogenous needs",
-    "resource autonomy",
-    "non-domination",
-    "distributed systems",
-    "institutional design",
-    "multi-agent governance"
+    "demand formation",
+    "functional preference",
+    "discretionary budgets",
+    "access licensing",
+    "memory ablation",
+    "service discovery",
+    "fault injection",
+    "reproducibility"
   ],
-  "abstract": "An agent that can plan a repair may still depend on a person to notice the fault, authorize the work, and pay for it. This paper asks what changes when an agent can detect a need during operation, spend a bounded budget, and commission a repair whose success another party can verify. We distinguish this functional account of need from claims about consciousness or moral status. We also distinguish a service's ability to survive its founder from a participant's ability to withdraw resources or challenge a successor. We call the latter capacity recurrent contestability when it remains usable across repeated changes in control. We propose seven hypotheses about discovery, resource allocation, concentration, coordination cost, resilience, succession, and contestation. Two proposed comparisons illustrate how to test them: a state-sensitive agent against a fixed diagnostic rule with the same spending authority, and a successor institution against a second attempt at capture after the founder leaves. The unit of analysis is an independently run society. Verified repairs, total costs, unauthorized restrictions, and time without a remedy are separate outcomes. The paper reports a design and its failure criteria. The prototype, comparisons, and human participation studies remain unperformed.",
+  "abstract": "An agent can earn credits by correcting a customer's catalogue and spend part of them to hear a recording. The receipt answers only the last of several questions. Who first proposed that use? Was the work useful? Could the agent save its earnings? Did a licensed playback occur, and did anyone gain an additional use? We specify what to record at each step and which controls can distinguish the explanations. A proposed pilot compares two ways of generating requests in 32 unguided environments under matched budgets, with twelve additional environments for calibration. A second, scripted comparison uses two workers to test how shared power and hosting affect job delivery when a component fails or an operator withdraws. Additional designs cover skill transfer from optional play and the cost of switching catalogues. The framework gives pass, failure and inconclusive outcomes for evidence of choice, access, accounting and recovery. The protocols remain unexecuted.",
   "full_text": "manuscript.md",
   "word_edition": "manuscript.docx",
   "citation": "CITATION.cff",
   "reuse_terms": "RIGHTS.md",
-  "hypotheses": [
+  "contributions": "CONTRIBUTING.md",
+  "license": "CC0-1.0",
+  "license_scope": "Original text and metadata. Third-party works retain their terms.",
+  "indexing": {
+    "entry": "README.md",
+    "agent_guide": "llms.txt",
+    "canonical_text": "manuscript.md"
+  },
+  "demand_stages": [
+    "Demand generation",
+    "Formation of purchasing power from settled useful work and authorized retained income",
+    "Executed transaction with verified rights and delivery",
+    "Net additional demand versus a matched counterfactual after displacement, subsidies, circular flows and costs"
+  ],
+  "research_designs": [
     {
-      "id": "H1",
-      "claim": "Need discovery. Under matched information, budgets, and permissions, state-sensitive need revision increases the proportion of unlisted, injected faults independently verified as resolved by the deadline, relative to a fixed diagnostic rule. A second comparison with external commissioning estimates the effect of changing the whole workflow. False alarms, duplicate repairs and displaced assigned work are recorded separately.",
-      "status": "proposed and untested"
+      "section": "4.1",
+      "question": "Can an agent record an unassigned demand before offers, earn a discretionary balance and exercise that choice?",
+      "unit": "An independently assigned synthetic environment within a matched family.",
+      "design": "Two proposers crossed with persistent or ablated episodic memory and informative or sham evidence. Four world families. Instructed and fixed-preference buyers calibrate the pipeline.",
+      "development_budget": {
+        "families": 4,
+        "unguided": 32,
+        "instructed": 8,
+        "fixed_preference": 4,
+        "total_environments": 44,
+        "max_calls_per_environment": 12,
+        "max_total_calls": 528,
+        "max_input_tokens_per_call": 4000,
+        "max_output_tokens_per_call": 1000,
+        "max_total_generated_tokens": 528000
+      },
+      "outcomes": [
+        "Pre-offer demand across all assigned unguided environments",
+        "A later choice consistent with the recorded terms, including saving",
+        "Independent acceptance of work, earnings, license delivery and evidence of playback"
+      ],
+      "failure": "An unauthorized debit or false grant fails its control. Failure of instructed controls makes the end-to-end demand comparison inconclusive.",
+      "status": "Proposed; zero runs."
     },
     {
-      "id": "H2",
-      "claim": "Resource continuity. Stable discretionary quotas reduce approval delays and improve continuity of useful activity relative to per-action allocation under comparable risk constraints. Benefits must persist after including verification and intervention costs. Bypassing required safeguards is not an efficiency gain.",
-      "status": "proposed and untested"
+      "section": "4.2",
+      "question": "Does the offer of a discretionary play budget improve performance on held-out tasks?",
+      "unit": "Independent sandbox instance",
+      "controls": [
+        "Self-selected activity with the option to decline",
+        "Human-specified activity and allowance with the option to decline",
+        "No-exploration condition with budget retained"
+      ],
+      "outcomes": [
+        "Held-out exact task scores",
+        "Actual compute, unused credit, refusals and negative transfer"
+      ],
+      "budget_status": "Sample size and limits require prospective specification.",
+      "status": "Proposed; zero runs."
     },
     {
-      "id": "H3",
-      "claim": "Concentrated control. Joint control over productive access and demand visibility increases dependence, acceptance of unfavorable terms, or rule bias relative to separated control. If separation fails because another bottleneck dominates, the proposed mechanism requires refinement.",
-      "status": "proposed and untested"
+      "section": "5",
+      "question": "Can independent catalogue access increase verified use after accounting for displaced purchases, switching costs and shared funding?",
+      "unit": "Independent synthetic market",
+      "controls": [
+        "Owner-directed versus agent-directed retained spending",
+        "Single catalogue versus independent route",
+        "Referral outage versus sham within each cell"
+      ],
+      "outcomes": [
+        "New and retained independent paying customers",
+        "Verified final uses and displacement",
+        "Costs of discovery, migration, refunds and acceptance"
+      ],
+      "budget_status": "Sample size and limits require prospective specification.",
+      "status": "Proposed; zero runs."
     },
     {
-      "id": "H4",
-      "claim": "Handshake costs. Standardized identity, capability, contract, and acceptance interfaces reduce total coordination cost for comparable outcomes and risk. The cost boundary includes discovery, clarification, negotiation, authorization, verification, disputes, recovery, and protocol maintenance. Fewer messages alone are insufficient evidence.",
-      "status": "proposed and untested"
-    },
-    {
-      "id": "H5",
-      "claim": "Distributed resilience. Reducing shared failure dependencies improves recovery and continuity under the specified failure model without exceeding predeclared bounds on state loss, inconsistent obligations, or resource use. Merely increasing replica counts does not support the mechanism if effective dependencies remain unchanged.",
-      "status": "proposed and untested"
-    },
-    {
-      "id": "H6",
-      "claim": "Succession and non-domination. Verified transfer of founder privileges, effective appeals, and feasible exit reduce losses caused by unilateral interference while preserving acceptable safety and service continuity. If new institutions reproduce the same control informally, or prevent timely containment of serious harm, the design should be revised.",
-      "status": "proposed and untested"
-    },
-    {
-      "id": "H7",
-      "claim": "Recurrent contestability. Institutions that preserve independent review, evidence access, and practical capacity to challenge control reduce the duration or severity of reconstructed domination across repeated transitions relative to institutions that only remove an initial founder. The comparison must include successive individual and coalition capture attempts, while holding available resources and legitimate safety requirements comparable. A larger number of complaints alone is not success; challenges must identify relevant harms, receive substantive review, and produce warranted remedies without making routine coordination unworkable.",
-      "status": "proposed and untested"
+      "section": "6.2",
+      "question": "When do independent circuits or hosting accounts improve on-time delivery under a shared compute ceiling?",
+      "unit": "Matched synthetic workload trace",
+      "development_budget": {
+        "traces": 4,
+        "circuit_layouts": 2,
+        "hosting_layouts": 2,
+        "conditions": 4,
+        "runs": 64,
+        "rounds_per_run": 12,
+        "max_events_per_run": 120,
+        "max_total_events": 7680,
+        "model_calls": 0
+      },
+      "conditions": [
+        "Normal service",
+        "Loss of primary power circuit",
+        "Suspension of primary hosting account",
+        "Withdrawal of operating grant"
+      ],
+      "outcomes": [
+        "On-time accepted jobs in rounds 5–12",
+        "Recovery time and overhead",
+        "Outstanding obligations and access after revocation"
+      ],
+      "criterion": "At least one extra on-time job in at least three of four paired traces at equal compute ceiling and within budget. Report regressions. An unauthorized restart or debit fails. Unverified revocation after the event cap is inconclusive.",
+      "status": "Proposed; zero runs."
     }
   ],
   "public_references": [
@@ -67,43 +138,58 @@
     },
     {
       "number": 2,
-      "citation": "Park, J. S., O'Brien, J. C., Cai, C. J., Morris, M. R., Liang, P., and Bernstein, M. S. (2023). Generative Agents: Interactive Simulacra of Human Behavior. Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST '23).",
-      "url": "https://doi.org/10.1145/3586183.3606763"
+      "citation": "Colas, C., Teodorescu, L., Oudeyer, P.-Y., Yuan, X., and Côté, M.-A. (2023). Augmenting Autotelic Agents with Large Language Models. Proceedings of the 2nd Conference on Lifelong Learning Agents, PMLR 232, 205–226.",
+      "url": "https://proceedings.mlr.press/v232/colas23a.html"
     },
     {
       "number": 3,
-      "citation": "Zheng, S., Trott, A., Srinivasa, S., Parkes, D. C., and Socher, R. (2022). The AI Economist: Taxation policy design via two-level deep multiagent reinforcement learning. Science Advances, 8(18), eabk2607.",
-      "url": "https://doi.org/10.1126/sciadv.abk2607"
+      "citation": "Armstrong, S., and Mindermann, S. (2018). Occam's razor is insufficient to infer the preferences of irrational agents. Advances in Neural Information Processing Systems 31.",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2018/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html"
     },
     {
       "number": 4,
-      "citation": "Altera.AL, Ahn, A., Becker, N., Carroll, S., Christie, N., Cortes, M., Demirci, A., Du, M., Li, F., Luo, S., Wang, P. Y., Willows, M., Yang, F., and Yang, G. R. (2024). Project Sid: Many-agent simulations toward AI civilization. arXiv:2411.00114v1.",
-      "url": "https://arxiv.org/abs/2411.00114v1"
+      "citation": "Pathak, D., Agrawal, P., Efros, A. A., and Darrell, T. (2017). Curiosity-driven Exploration by Self-supervised Prediction. Proceedings of the 34th International Conference on Machine Learning, PMLR 70, 2778–2787.",
+      "url": "https://proceedings.mlr.press/v70/pathak17a.html"
     },
     {
       "number": 5,
-      "citation": "Long, R., Sebo, J., Butlin, P., Finlinson, K., Fish, K., Harding, J., Pfau, J., Sims, T., Birch, J., and Chalmers, D. (2024). Taking AI Welfare Seriously. arXiv:2411.00986v1.",
-      "url": "https://arxiv.org/abs/2411.00986v1"
+      "citation": "Wang, R., Lehman, J., Rawal, A., Zhi, J., Li, Y., Clune, J., and Stanley, K. O. (2020). Enhanced POET: Open-ended Reinforcement Learning through Unbounded Invention of Learning Challenges and their Solutions. Proceedings of the 37th International Conference on Machine Learning, PMLR 119, 9940–9951.",
+      "url": "https://proceedings.mlr.press/v119/wang20l.html"
     },
     {
       "number": 6,
+      "citation": "Xu, M. (2026). The Agent Economy: A Blockchain-Based Foundation for Autonomous AI Agents. arXiv:2602.14219v1 [cs.CR].",
+      "url": "https://arxiv.org/abs/2602.14219v1"
+    },
+    {
+      "number": 7,
+      "citation": "United States. 17 U.S.C. § 101. Definitions, including transfer of copyright ownership. U.S. Copyright Office, Copyright Law of the United States.",
+      "url": "https://www.copyright.gov/title17/92chap1.html#101"
+    },
+    {
+      "number": 8,
+      "citation": "U.S. Copyright Office. What Musicians Should Know about Copyright. Guidance on musical works, sound recordings and permission.",
+      "url": "https://www.copyright.gov/engage/musicians/"
+    },
+    {
+      "number": 9,
+      "citation": "Armstrong, M. (2006). Competition in two-sided markets. RAND Journal of Economics, 37(3), 668–691.",
+      "url": "https://doi.org/10.1111/j.1756-2171.2006.tb00037.x"
+    },
+    {
+      "number": 10,
+      "citation": "Greshake, K., Abdelnabi, S., Mishra, S., Endres, C., Holz, T., and Fritz, M. (2023). Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection. arXiv:2302.12173v2.",
+      "url": "https://arxiv.org/abs/2302.12173v2"
+    },
+    {
+      "number": 11,
       "citation": "Fischer, M. J., Lynch, N. A., and Paterson, M. S. (1985). Impossibility of Distributed Consensus with One Faulty Process. Journal of the ACM, 32(2), 374–382. doi:10.1145/3149.214121.",
       "url": "https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf"
     },
     {
-      "number": 7,
+      "number": 12,
       "citation": "Gilbert, S., and Lynch, N. (2002). Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services. ACM SIGACT News, 33(2), 51–59. doi:10.1145/564585.564601.",
       "url": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf"
-    },
-    {
-      "number": 8,
-      "citation": "Pettit, P. (1999 edition). Republicanism: A Theory of Freedom and Government. Oxford University Press.",
-      "url": "https://doi.org/10.1093/0198296428.001.0001"
-    },
-    {
-      "number": 9,
-      "citation": "Ostrom, E. (2010). Polycentric systems for coping with collective action and global environmental change. Global Environmental Change, 20(4), 550–557.",
-      "url": "https://doi.org/10.1016/j.gloenvcha.2010.07.004"
     }
   ]
 }

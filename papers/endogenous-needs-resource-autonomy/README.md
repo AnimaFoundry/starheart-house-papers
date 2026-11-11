@@ -1,12 +1,11 @@
 # Endogenous Needs and Resource Autonomy in a Mixed Human and Agent Economy
 
-*Distributed Resilience and Recurrent Contestability*  
-Anonymous discussion paper, third edition, November 2026.
+*Measuring Demand Formation, Authorized Spending, and Service Reliability*
 
-When an agent notices a service failure, who can authorize a repair, pay for it, and decide whether it worked? The paper proposes comparing those arrangements under equal resource limits. It also asks whether a later participant can obtain a remedy when a successor or coalition takes control of the review process itself.
+Anonymous English discussion paper, seventh edition. [Full text](manuscript.md) · [Word edition](manuscript.docx)
 
-[Read the full manuscript](manuscript.md) or [open the Word edition](manuscript.docx).
+A synthetic customer pays ten credits for an accepted catalogue correction. After agreed operating and provider charges, the agent may keep six. Could it have proposed listening to a recording before seeing a catalogue, then either saved those credits or obtained the one-use license and processed the audio? Sections 3–4 specify the difference and the evidence needed at each step.
 
-Section 2 surveys earlier research. Section 7 gives seven hypotheses. Section 8 specifies proposed comparisons, negative controls and failure criteria. The prototype and experiments remain unperformed. This discussion paper has not been peer reviewed.
+The proposed first pilot uses 44 environments to compare request generation, memory conditions and positive controls. Sections 4.2 and 5 give further comparisons for optional play and catalogue switching. Section 6 gives a 64-run scripted reliability study with shared circuits, hosting accounts and expiring permissions. Section 7 lists the fixtures and checks required before a prototype could yield interpretable results. All four designs await execution.
 
-For structured access, use the [reader guide](llms.txt), [machine-readable record](agent-manifest.json) and [citation metadata](CITATION.cff). The [rights notice](RIGHTS.md) describes reuse of original material.
+[Machine-readable design and sources](agent-manifest.json) · [Reader guide](llms.txt) · [Citation](CITATION.cff) · [Contributing](CONTRIBUTING.md) · [CC0 terms](RIGHTS.md)

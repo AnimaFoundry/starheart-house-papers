@@ -3,12 +3,12 @@ message: "To cite this discussion paper, use the preferred citation below."
 title: "Endogenous Needs and Resource Autonomy in a Mixed Human and Agent Economy"
 authors:
   - name: "Anonymous"
-version: "3.0"
+version: "7.0"
 preferred-citation:
   type: unpublished
   authors:
     - name: "Anonymous"
-  title: "Endogenous Needs and Resource Autonomy in a Mixed Human and Agent Economy: Distributed Resilience and Recurrent Contestability"
+  title: "Endogenous Needs and Resource Autonomy in a Mixed Human and Agent Economy: Measuring Demand Formation, Authorized Spending, and Service Reliability"
   year: 2026
   month: 11
-  notes: "Third edition. Conceptual discussion paper."
+  notes: "Seventh edition. Technical research proposal."

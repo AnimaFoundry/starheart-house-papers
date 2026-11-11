@@ -1,11 +1,13 @@
 # Endogenous Needs and Resource Autonomy in a Mixed Human and Agent Economy
 
-> Anonymous English discussion paper about endogenous needs, bounded spending authority, founder succession, and the ability to challenge successors.
+> Anonymous English technical research proposal, edition 7. All experiments are proposed.
 
-- [Full text](manuscript.md): earlier evidence in Section 2, hypotheses H1–H7 in Section 7, proposed methods and failure criteria in Section 8.
-- [Word edition](manuscript.docx): editable edition of the same text.
-- [Structured record](agent-manifest.json): abstract, keywords, seven hypotheses and their status, and nine public references.
-- [Citation](CITATION.cff): anonymous citation and edition.
-- [Rights](RIGHTS.md): terms for original material.
+- [Canonical text](manuscript.md)
+- [Study designs, budgets and primary sources](agent-manifest.json)
+- [Overview](README.md)
+- [Word edition](manuscript.docx)
+- [Citation](CITATION.cff)
+- [Contributions](CONTRIBUTING.md)
+- [Reuse terms](RIGHTS.md)
 
-The authors report no experiment, prototype run, or participant observation for the proposed institution. The scenarios illustrate possible tests. Empirical and formal findings attributed to other authors apply in the settings specified in those publications.
+Section 3 defines request provenance, purchasing power, delivery and additional use. Section 4 specifies the earning and licensed-playback path, matched controls and play-transfer scoring. Section 5 defines catalogue-switching and cost measures. Section 6 specifies grant conservation, recovery and revocation under synthetic faults. Section 7 describes implementation and evidence requirements.
