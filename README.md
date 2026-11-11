@@ -8,6 +8,7 @@ Public research notes, speculative engineering proposals, and machine-readable i
 | --- | --- | --- | --- | --- |
 | 2026 | 三清机匠 / Sanqing Fabricator | [Read the proposal](papers/sanqing-fabricator/README.md) | [Read `llms.txt`](papers/sanqing-fabricator/llms.txt) | `CONCEPT` · `RESEARCH_ONLY` |
 | 2026 | When One Bit Is Enough | [Read the concept paper](papers/probabilistic-neutrino-trigger-channel/README.md) | [Read `llms.txt`](papers/probabilistic-neutrino-trigger-channel/llms.txt) | `CONCEPT` · `RESEARCH_ONLY` · `L0` |
+| 2026 | Endogenous Needs and Resource Autonomy in a Mixed Human and Agent Economy | [Full text](papers/endogenous-needs-resource-autonomy/manuscript.md) · [Overview](papers/endogenous-needs-resource-autonomy/README.md) | [Agent guide](papers/endogenous-needs-resource-autonomy/llms.txt) | Conceptual discussion paper, seven untested hypotheses |
 
 ## Reading rules
 
