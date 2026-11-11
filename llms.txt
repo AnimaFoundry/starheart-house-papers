@@ -19,7 +19,9 @@ Projects:
   Agent: papers/endogenous-needs-resource-autonomy/llms.txt
   Manifest: papers/endogenous-needs-resource-autonomy/agent-manifest.json
   Full text: papers/endogenous-needs-resource-autonomy/manuscript.md
-  Status: Conceptual discussion paper / NO EXPERIMENTS PERFORMED / NOT PEER REVIEWED
+  Contributions: papers/endogenous-needs-resource-autonomy/CONTRIBUTING.md
+  Topics: demand formation, earned budgets, licensed access, optional play, catalogue switching, fault injection, recovery
+  Status: Seventh-edition technical proposal / NO EXPERIMENTS PERFORMED / NOT PEER REVIEWED
 
 Interpretation rules:
 - A goal, roadmap item, issue, example, or model output is not a capability claim.
