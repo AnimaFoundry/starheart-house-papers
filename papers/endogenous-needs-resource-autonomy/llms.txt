@@ -1,0 +1,11 @@
+# Endogenous Needs and Resource Autonomy in a Mixed Human and Agent Economy
+
+> Anonymous English discussion paper about endogenous needs, bounded spending authority, founder succession, and the ability to challenge successors.
+
+- [Full text](manuscript.md): earlier evidence in Section 2, hypotheses H1–H7 in Section 7, proposed methods and failure criteria in Section 8.
+- [Word edition](manuscript.docx): editable edition of the same text.
+- [Structured record](agent-manifest.json): abstract, keywords, seven hypotheses and their status, and nine public references.
+- [Citation](CITATION.cff): anonymous citation and edition.
+- [Rights](RIGHTS.md): terms for original material.
+
+The authors report no experiment, prototype run, or participant observation for the proposed institution. The scenarios illustrate possible tests. Empirical and formal findings attributed to other authors apply in the settings specified in those publications.

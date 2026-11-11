@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "To cite this discussion paper, use the preferred citation below."
+title: "Endogenous Needs and Resource Autonomy in a Mixed Human and Agent Economy"
+authors:
+  - name: "Anonymous"
+version: "3.0"
+preferred-citation:
+  type: unpublished
+  authors:
+    - name: "Anonymous"
+  title: "Endogenous Needs and Resource Autonomy in a Mixed Human and Agent Economy: Distributed Resilience and Recurrent Contestability"
+  year: 2026
+  month: 11
+  notes: "Third edition. Conceptual discussion paper."
