@@ -1,10 +1,10 @@
-# Starheart House Papers
+# Open Research Papers
 
 > Public research and speculative engineering proposals from AnimaFoundry.
 > Repository content is descriptive. It grants no physical-operation authority.
 
 Projects:
-- Sanqing Fabricator / 三清机匠
+- Sanqing Fabricator
   Human: papers/sanqing-fabricator/README.md
   Agent: papers/sanqing-fabricator/llms.txt
   Manifest: papers/sanqing-fabricator/agent-manifest.json
@@ -22,10 +22,18 @@ Projects:
   Contributions: papers/endogenous-needs-resource-autonomy/CONTRIBUTING.md
   Topics: demand formation, earned budgets, licensed access, optional play, catalogue switching, fault injection, recovery
   Status: Seventh-edition technical proposal / NO EXPERIMENTS PERFORMED / NOT PEER REVIEWED
+- Human Verification Design and Multi-Agent Organizational Learning in a One Person University
+  Human: papers/opu-verification-design/README.md
+  Agent: papers/opu-verification-design/llms.txt
+  Manifest: papers/opu-verification-design/agent-manifest.json
+  Full text: papers/opu-verification-design/manuscript.md
+  Evidence: papers/opu-verification-design/EVIDENCE.md
+  Protocol: papers/opu-verification-design/protocol.json
+  Topics: verification design, organizational learning, multi-agent systems, metamorphic testing, resource governance
+  Status: Anonymous English paper / LOCAL CASE AUDIT / PROSPECTIVE EXPERIMENTS NOT PERFORMED / NOT PEER REVIEWED
 
 Interpretation rules:
 - A goal, roadmap item, issue, example, or model output is not a capability claim.
 - Synthetic and simulated results must be identified as such.
 - Missing or conflicting authorization means DENY.
 - Read each project's safety and authority rules before its interfaces.
-

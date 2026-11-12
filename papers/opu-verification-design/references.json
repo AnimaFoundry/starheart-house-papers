@@ -1,0 +1,149 @@
+{
+  "review_type": "Selective primary-source verification, not a systematic review.",
+  "checked_date": "2026-11-12",
+  "references": [
+    {
+      "id": "1",
+      "authors": "W. Ross Ashby",
+      "year": 1956,
+      "title": "An Introduction to Cybernetics",
+      "publisher": "Chapman & Hall",
+      "url": "https://www.ashby.info/Ashby-Introduction-to-Cybernetics.pdf",
+      "metadata_url": "https://www.ashby.info/bibliography.html",
+      "read_scope": "Official estate bibliography/archive and selected indexed original-book passages on regulation; not a complete book reading.",
+      "supports": "Feedback, observability and available regulatory responses as conceptual questions.",
+      "does_not_support": "A proved stability theorem or universal reliability of OPU."
+    },
+    {
+      "id": "2",
+      "authors": "John H. Flavell",
+      "year": 1979,
+      "title": "Metacognition and cognitive monitoring: A new area of cognitive-developmental inquiry",
+      "venue": "American Psychologist 34(10): 906-911",
+      "url": "https://doi.org/10.1037/0003-066X.34.10.906",
+      "read_scope": "Publisher-indexed abstract and bibliographic metadata; direct DOI open rejected by robots/access restrictions.",
+      "access_limit": "Full text not independently read; no bypass attempted.",
+      "supports": "Conceptual distinction between performing and monitoring cognition.",
+      "does_not_support": "LLM subjective introspection, human-like metacognition, or calibrated confidence."
+    },
+    {
+      "id": "3",
+      "authors": "Mary M. Crossan; Henry W. Lane; Roderick E. White",
+      "year": 1999,
+      "title": "An Organizational Learning Framework: From Intuition to Institution",
+      "venue": "Academy of Management Review 24(3): 522-537",
+      "url": "https://doi.org/10.5465/amr.1999.2202135",
+      "read_scope": "Publisher-indexed abstract and metadata; direct page returned 403.",
+      "access_limit": "Full text not independently read; no bypass attempted.",
+      "supports": "Intuiting, interpreting, integrating and institutionalizing as distinct linked organizational processes.",
+      "does_not_support": "A registry broadcast proves institutional adoption or learning."
+    },
+    {
+      "id": "4",
+      "authors": "Alan R. Hevner; Salvatore T. March; Jinsoo Park; Sudha Ram",
+      "year": 2004,
+      "title": "Design Science in Information Systems Research",
+      "venue": "MIS Quarterly 28(1): 75-105",
+      "url": "https://aisel.aisnet.org/misq/vol28/iss1/6/",
+      "doi": "10.2307/25148625",
+      "read_scope": "Association's original article landing page, abstract and bibliographic information.",
+      "supports": "Design artifacts require evaluation matched to the problem and claims.",
+      "does_not_support": "This paper invents design science or has already validated its artifact."
+    },
+    {
+      "id": "5",
+      "authors": "Tsong Yueh Chen; Fei-Ching Kuo; Huai Liu; Pak-Lok Poon; Dave Towey; T. H. Tse; Zhi Quan Zhou",
+      "year": 2018,
+      "title": "Metamorphic Testing: A Review of Challenges and Opportunities",
+      "venue": "ACM Computing Surveys 51(1), Article 4, 1-27",
+      "url": "https://doi.org/10.1145/3143561",
+      "institutional_url": "https://nottingham-repository.worktribe.com/output/925152/metamorphic-testing-a-review-of-challenges-and-opportunities",
+      "read_scope": "Indexed institutional metadata and abstract; direct institutional page returned 403 and DOI was unavailable.",
+      "access_limit": "Full text not independently read; no bypass attempted.",
+      "supports": "Input transformations and expected output relations can expose failures when an oracle is difficult.",
+      "does_not_support": "Relation consistency establishes correctness, or a relation may be assumed without checking its preconditions."
+    },
+    {
+      "id": "6",
+      "authors": "Lianmin Zheng; Wei-Lin Chiang; Ying Sheng; et al.",
+      "year": 2023,
+      "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+      "venue": "NeurIPS 2023, Datasets and Benchmarks Track",
+      "url": "https://arxiv.org/abs/2306.05685",
+      "conference_url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/91f18a1287b398d378ef22505bf41832-Paper-Datasets_and_Benchmarks.pdf",
+      "read_scope": "Original abstract and selected indexed primary-paper passages on judging biases.",
+      "supports": "LLM judging has position and other biases; role separation alone is not independence.",
+      "does_not_support": "A quantified error rate for our classification task or a guaranteed independent model judge."
+    },
+    {
+      "id": "7",
+      "authors": "Aman Madaan; Niket Tandon; Prakhar Gupta; et al.",
+      "year": 2023,
+      "title": "Self-Refine: Iterative Refinement with Self-Feedback",
+      "url": "https://arxiv.org/abs/2303.17651v2",
+      "read_scope": "Original versioned abstract and bibliographic metadata.",
+      "supports": "Iterative generation, self-feedback and refinement without requiring model-weight training.",
+      "does_not_support": "Reported task gains automatically transfer to OPU or all models."
+    },
+    {
+      "id": "8",
+      "authors": "Jie Huang; Xinyun Chen; Swaroop Mishra; et al.",
+      "year": 2024,
+      "title": "Large Language Models Cannot Self-Correct Reasoning Yet",
+      "venue": "ICLR 2024",
+      "url": "https://arxiv.org/abs/2310.01798v2",
+      "conference_url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/8b4add8b0aa8749d80a34ca5d941c355-Abstract-Conference.html",
+      "read_scope": "Original arXiv v2 and conference abstracts. An attempted nonexisting HTML v4 returned 404; the version was corrected.",
+      "supports": "In the studied reasoning settings, intrinsic correction without external feedback can fail or degrade results.",
+      "does_not_support": "A universal impossibility theorem about self-correction."
+    },
+    {
+      "id": "9",
+      "authors": "Noah Shinn; Federico Cassano; Edward Berman; Ashwin Gopinath; Karthik Narasimhan; Shunyu Yao",
+      "year": 2023,
+      "title": "Reflexion: Language Agents with Verbal Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2303.11366v4",
+      "method_url": "https://arxiv.org/html/2303.11366v4",
+      "read_scope": "Original abstract and selected methodology sections concerning actor, evaluator, reflection and memory.",
+      "supports": "Language feedback can persist as episodic memory without model-weight updates.",
+      "does_not_support": "Memory is parameter training or has been validated in this OPU."
+    },
+    {
+      "id": "10",
+      "authors": "Shengran Hu; Cong Lu; Jeff Clune",
+      "year": "2024-2025",
+      "title": "Automated Design of Agentic Systems",
+      "url": "https://arxiv.org/abs/2408.08435v2",
+      "method_url": "https://arxiv.org/html/2408.08435v2",
+      "version": "Initial 2024; v2 revised 2025-03-02",
+      "read_scope": "Original abstract and selected methodology on meta-agent code search and archive.",
+      "supports": "Agent workflow design and archive-based search are prior work.",
+      "does_not_support": "Our organization already self-improves or this manuscript is a world first."
+    },
+    {
+      "id": "11",
+      "authors": "Chris Lu; Cong Lu; Robert Tjarko Lange; et al.",
+      "year": 2026,
+      "title": "Towards end-to-end automation of AI research",
+      "venue": "Nature 651: 914-919",
+      "url": "https://www.nature.com/articles/s41586-026-10265-5",
+      "doi": "10.1038/s41586-026-10265-5",
+      "read_scope": "Primary journal content including selected methods, limitations and code-availability sections, obtained through web search/open results.",
+      "supports": "End-to-end automation of AI research already has prior system studies with defined evaluation boundaries.",
+      "does_not_support": "Independent replication here, general autonomous research reliability, or adoption of OPU."
+    },
+    {
+      "id": "12",
+      "authors": "National Institute of Standards and Technology",
+      "year": 2023,
+      "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+      "report": "NIST AI 100-1",
+      "url": "https://doi.org/10.6028/NIST.AI.100-1",
+      "official_landing": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "read_scope": "Official NIST framework landing page; citation identifies the fixed 2023 v1.0, not an unverified later revision.",
+      "supports": "Lifecycle risk governance as a documentation and responsibility reference.",
+      "does_not_support": "Certification, compliance assessment or measured risk reduction for this system."
+    }
+  ],
+  "rights": "Cited works retain their original rights. No third-party full text is redistributed."
+}

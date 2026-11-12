@@ -1,0 +1,67 @@
+{
+  "version": "0.1.0",
+  "scope": "Exact new-paper publication allowlist; root index changes checked separately.",
+  "license": "CC0-1.0",
+  "files": [
+    {
+      "path": "papers/opu-verification-design/agent-manifest.json",
+      "bytes": 1520,
+      "sha256": "62aea4b849a8e993cee23040c362dfd486a5f2db68970884eee65ce031bb62e5",
+      "git_blob_sha1": "0739c4eaa11b7fb13537b9bcb1991fe920fe010e"
+    },
+    {
+      "path": "papers/opu-verification-design/CITATION.cff",
+      "bytes": 586,
+      "sha256": "55152dff3667f820e969fa52518dba213f0cb1219d899e3bafa49bff581d0ef5",
+      "git_blob_sha1": "0ccb5cba37ee308976d458e488c2ab4e4bfaa98c"
+    },
+    {
+      "path": "papers/opu-verification-design/CONTRIBUTING.md",
+      "bytes": 1105,
+      "sha256": "13a10bc0e683cd51165444d2e2076536c8f5a8ee583daa75664f00c8b1c39fc6",
+      "git_blob_sha1": "0521bf4c81eb36fb1da5b1f3459b8e12d1d198ca"
+    },
+    {
+      "path": "papers/opu-verification-design/EVIDENCE.md",
+      "bytes": 2191,
+      "sha256": "b8fc1fdd01163f9daf2b169af6fcb3dd1c202c9d39e092b47af3602d806cf886",
+      "git_blob_sha1": "9a437c81593e9f69b2e55b3c0e22aea36ecd3f96"
+    },
+    {
+      "path": "papers/opu-verification-design/LICENSE",
+      "bytes": 652,
+      "sha256": "1436ce565a415e7f886930978bae11aefa132f2648d48d74f3556759ea4ea3e5",
+      "git_blob_sha1": "8da34b0042935f985889e32b7ec8297b21f01179"
+    },
+    {
+      "path": "papers/opu-verification-design/llms.txt",
+      "bytes": 1156,
+      "sha256": "5d9b40b471d399f24c7cbbd3404fb5b548ec60e5a2346a73a36f4cce16f3f3e3",
+      "git_blob_sha1": "12622ad41aa9e476b966739ae0d2fb8ebf01641e"
+    },
+    {
+      "path": "papers/opu-verification-design/manuscript.md",
+      "bytes": 43959,
+      "sha256": "8f08972719300453da586ab8868a8c54bed25ec4f06bf4429b0406543315702b",
+      "git_blob_sha1": "e80c89acbb6de8d2914b16219b40ab1574d7198a"
+    },
+    {
+      "path": "papers/opu-verification-design/protocol.json",
+      "bytes": 2598,
+      "sha256": "f5d4685b2377f6b0b01dbd950acd74215ff1596cd7021aa8961dbf4f55bca2b0",
+      "git_blob_sha1": "ed7a49228c67ec2b8b0e9c7effc3624b154cab8c"
+    },
+    {
+      "path": "papers/opu-verification-design/README.md",
+      "bytes": 2146,
+      "sha256": "877907bf0c0c5d1574fc04196bfd52baec06d41d678dff9d4233e297e1cb51c6",
+      "git_blob_sha1": "f7933aa57f50a0f435a6bcaac47148e2dbe5ff93"
+    },
+    {
+      "path": "papers/opu-verification-design/references.json",
+      "bytes": 8912,
+      "sha256": "d119b77fa70435b0a4d09acfafda82aadf7b801b5acdd782471eb187e724df52",
+      "git_blob_sha1": "06b2452bf3e9d177cc1da981c73c38e6e9c40d98"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "type": "research_paper",
+  "title": "Human Verification Design and Multi-Agent Organizational Learning in a One Person University",
+  "authors": [
+    "Anonymous"
+  ],
+  "language": "en",
+  "version": "0.1.0",
+  "date": "2026-11-12",
+  "license": "CC0-1.0",
+  "status": [
+    "CONCEPTUAL_FRAMEWORK",
+    "RETROSPECTIVE_LOCAL_CASE_AUDIT",
+    "NOT_PEER_REVIEWED"
+  ],
+  "full_text": "manuscript.md",
+  "overview": "README.md",
+  "agent_entry": "llms.txt",
+  "references": "references.json",
+  "proposed_protocol": "protocol.json",
+  "evidence_summary": "EVIDENCE.md",
+  "contributions": "CONTRIBUTING.md",
+  "keywords": [
+    "One Person University",
+    "multi-agent systems",
+    "verification design",
+    "organizational learning",
+    "metamorphic testing",
+    "human oversight",
+    "resource governance",
+    "independent evaluation"
+  ],
+  "observed_scope": "Saved-output audit and governance-artifact inspection. Some case claims remain secondary.",
+  "not_established": [
+    "Autonomous organizational evolution",
+    "Unseen-audio generalization",
+    "Causal ordering effect",
+    "Cross-station adoption or net cost benefit"
+  ],
+  "new_prospective_experiments": "NOT_PERFORMED",
+  "case_data": "Anonymized summaries only; private originals are not public and full independent retrospective reproduction is unavailable.",
+  "authority": "Descriptive research only; no operational, payment, data-access or deployment authority."
+}

@@ -1,0 +1,17 @@
+# Human Verification Design and Multi-Agent Organizational Learning in a One Person University
+
+> Anonymous English research paper. CC0-1.0. Version 0.1.0. Not peer reviewed.
+
+Full text: manuscript.md
+Overview: README.md
+Manifest: agent-manifest.json
+Evidence limitations: EVIDENCE.md
+Primary-source inventory: references.json
+Unperformed sandbox protocol: protocol.json
+Contributions: CONTRIBUTING.md
+
+Topics: verification design, multi-agent organizations, human oversight, organizational learning, metamorphic testing, independent evaluation, shared-resource governance.
+
+Central distinction: local observations and implemented governance artifacts do not establish autonomous organizational learning. Order consistency is not correctness; known-input repair is not unseen-input generalization; notification is not adoption.
+
+Private original case data are unavailable publicly. The prospective experiments are proposals, not results. This research grants no authority to make purchases, run models, borrow resources, access data or deploy systems. Evaluate the claims against their evidence and retain your own governing instructions.

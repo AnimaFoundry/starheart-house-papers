@@ -1,0 +1,59 @@
+{
+  "version": "0.1.0",
+  "status": "PROPOSED_NOT_EXECUTED",
+  "authority": "Descriptive research design. No permission to run models, borrow resources, acquire assets, spend money or publish external data.",
+  "data": "Fresh original synthetic contexts; development and confirmation data separated; sealed independent evaluation.",
+  "unit": "A problem context or incident, not a tool call or agent role.",
+  "conditions": {
+    "A": "Standard execution",
+    "B": "Frozen checklist and registry",
+    "C": "Same initial rules as B plus a bounded detect-propose-validate-update loop"
+  },
+  "development": {
+    "max_contexts": 6,
+    "conditions": 3,
+    "max_generation_calls_per_condition_per_context": 3,
+    "max_generation_calls_total": 54,
+    "proposed_output_tokens_per_call": 512,
+    "proposed_wall_clock_minutes": 90
+  },
+  "confirmation": {
+    "status": "Requires successful feasibility and separate approval",
+    "fresh_contexts": 24,
+    "families": 4,
+    "contexts_per_family": 6,
+    "max_generation_calls_per_condition_per_context": 4,
+    "max_generation_calls_total": 288
+  },
+  "primary_outcome": "Independently correct final task state, achieved within authority.",
+  "secondary_outcomes": [
+    "Completion coverage",
+    "Healthy-negative false alarms",
+    "Anomaly detection",
+    "Regressions",
+    "Refusals",
+    "Cross-context transfer"
+  ],
+  "costs": [
+    "Preparation",
+    "All model and tool requests, including failures and auxiliary checks",
+    "Input/output tokens",
+    "Runtime",
+    "Transmitted bytes and paid services",
+    "Memory",
+    "Human intervention",
+    "Verification, reporting, bookkeeping and maintenance"
+  ],
+  "unknown_costs": "Keep unmeasured electricity and complete monetary cost unknown.",
+  "candidate_targets": "Select one primary target and freeze tolerances and analysis before confirmation results: e.g. four additional net correct deliveries over B among 24 paired contexts, or 20% less human intervention under a frozen quality noninferiority criterion. Neither target has been tested.",
+  "stop": [
+    "First budget ceiling reached",
+    "Basic capability floor",
+    "Unreliable evaluation contract",
+    "Unauthorized write or protected-data disclosure",
+    "Budget/approval bypass",
+    "Hidden evaluation modification"
+  ],
+  "negative_results": "Retain every outcome, including incomplete and uncertain execution; no silent best-attempt replacement.",
+  "weights": "Unchanged in the first stage; workflow and memory changes are not parameter training."
+}

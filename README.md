@@ -1,4 +1,4 @@
-# Starheart House Papers
+# Open Research Papers
 
 Public research notes, speculative engineering proposals, and machine-readable idea papers from AnimaFoundry.
 
@@ -6,9 +6,10 @@ Public research notes, speculative engineering proposals, and machine-readable i
 
 | Year | Project | Human entry | Agent entry | Status |
 | --- | --- | --- | --- | --- |
-| 2026 | 三清机匠 / Sanqing Fabricator | [Read the proposal](papers/sanqing-fabricator/README.md) | [Read `llms.txt`](papers/sanqing-fabricator/llms.txt) | `CONCEPT` · `RESEARCH_ONLY` |
+| 2026 | Sanqing Fabricator | [Read the proposal](papers/sanqing-fabricator/README.md) | [Read `llms.txt`](papers/sanqing-fabricator/llms.txt) | `CONCEPT` · `RESEARCH_ONLY` |
 | 2026 | When One Bit Is Enough | [Read the concept paper](papers/probabilistic-neutrino-trigger-channel/README.md) | [Read `llms.txt`](papers/probabilistic-neutrino-trigger-channel/llms.txt) | `CONCEPT` · `RESEARCH_ONLY` · `L0` |
 | 2026 | Endogenous Needs and Resource Autonomy in a Mixed Human and Agent Economy | [Full text](papers/endogenous-needs-resource-autonomy/manuscript.md) · [Overview](papers/endogenous-needs-resource-autonomy/README.md) | [Agent guide](papers/endogenous-needs-resource-autonomy/llms.txt) | Demand formation, licensed access, catalogue switching and fault injection · Technical proposal |
+| 2026 | Human Verification Design and Multi-Agent Organizational Learning in a One Person University | [Full English text](papers/opu-verification-design/manuscript.md) · [Overview](papers/opu-verification-design/README.md) | [Agent guide](papers/opu-verification-design/llms.txt) | Anonymous case audit and proposed sandbox protocol · Not peer reviewed |
 
 ## Reading rules
 
@@ -20,4 +21,3 @@ Public research notes, speculative engineering proposals, and machine-readable i
 ## License
 
 Unless a file states otherwise, repository content is released under the [CC0 1.0 Universal](LICENSE) public-domain dedication. Third-party works retain their original rights. Hardware, software, datasets, models, trademarks, patents, privacy rights, and publicity rights are not implicitly licensed merely because a concept paper discusses them.
-

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Please identify the version and its evidence limitations when discussing this paper."
+type: article
+title: "Human Verification Design and Multi-Agent Organizational Learning in a One Person University"
+authors:
+  - family-names: "Anonymous"
+version: 0.1.0
+date-released: 2026-11-12
+license: CC0-1.0
+url: "https://github.com/AnimaFoundry/starheart-house-papers/tree/main/papers/opu-verification-design"
+keywords:
+  - One Person University
+  - verification design
+  - multi-agent systems
+  - organizational learning
+  - independent evaluation
