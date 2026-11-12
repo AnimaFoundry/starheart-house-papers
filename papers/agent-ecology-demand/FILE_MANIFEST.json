@@ -1,0 +1,83 @@
+{
+  "scope": "Exact version 0.1.0 publication payload, excluding this self-referential manifest",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2491,
+      "sha256": "5414b758beb58494e780db776900c3112c386b502048e3f9484c2305d6e66e04",
+      "git_blob_sha1": "368b0b753a04830eef9e6dcf92720777a6f5386d"
+    },
+    {
+      "path": "llms.txt",
+      "bytes": 2857,
+      "sha256": "54630e40e83ea7e7b5bb8640d6786154b65c89a76fd4c94f29f7e020a1b589da",
+      "git_blob_sha1": "5a91c9904e75c0f54b6c7041c7da32eee35a1b9d"
+    },
+    {
+      "path": "papers/agent-ecology-demand/CHANGELOG.md",
+      "bytes": 326,
+      "sha256": "81714a4691d0e5b2863b88a4d7e8dfb41a0916fd966b7209fbc5eb7369078eb3",
+      "git_blob_sha1": "0b0fb62f3e73f4a89757ace3cd876118c8e2819e"
+    },
+    {
+      "path": "papers/agent-ecology-demand/CITATION.cff",
+      "bytes": 569,
+      "sha256": "d2d1e28c96326b9de179283c67c7f1b03574d7092755f7d1e1298d1f26c16d94",
+      "git_blob_sha1": "69f592ff9ae4393906ad997306215ac7d5031151"
+    },
+    {
+      "path": "papers/agent-ecology-demand/CONTRIBUTING.md",
+      "bytes": 947,
+      "sha256": "0efeba430cc01c79d88a241a23eacf660fe003f0c67d4eb63a5db74326e0b2e2",
+      "git_blob_sha1": "b260f634f08849749466617a880fafbb642d6273"
+    },
+    {
+      "path": "papers/agent-ecology-demand/EVIDENCE.md",
+      "bytes": 1697,
+      "sha256": "489d963b2d8ef46ebe3ea034d9f83a967fb16df0cbe1514f107749e7982f8582",
+      "git_blob_sha1": "3d9968128635e1c7892a9701d204c857404072c2"
+    },
+    {
+      "path": "papers/agent-ecology-demand/LICENSE",
+      "bytes": 534,
+      "sha256": "e41c4379b3e6d20a97bba9a91765e2158aff83f756ae6e9b1a7a39ac762766cb",
+      "git_blob_sha1": "0269e0e4926a1f92e7e32ad8b6d163ee71132482"
+    },
+    {
+      "path": "papers/agent-ecology-demand/README.md",
+      "bytes": 2003,
+      "sha256": "646c3866e0c9bf0ee0527fa057763e2eda7e746f04d293858ba810d24f80313f",
+      "git_blob_sha1": "98f170e3c95bd461fa94216c5c7c8423a416814c"
+    },
+    {
+      "path": "papers/agent-ecology-demand/agent-manifest.json",
+      "bytes": 985,
+      "sha256": "04623251245e9b089e474ab6eb84c4bdce7f03e6a1ba60bf2157fa15c042371a",
+      "git_blob_sha1": "65b17599dde45bcdcc167c8cb9b3493995b5ba26"
+    },
+    {
+      "path": "papers/agent-ecology-demand/llms.txt",
+      "bytes": 1272,
+      "sha256": "cec3f2377b23ef24722954ef0d84fd1ad73ebc62de8cafaca919231cada23a9c",
+      "git_blob_sha1": "1b4be47449ccde5fed571c98d86549db1fca0660"
+    },
+    {
+      "path": "papers/agent-ecology-demand/manuscript.md",
+      "bytes": 26189,
+      "sha256": "3b31ffd73466a9bf7f5bbe1295d266df9e4e1b5cfcce96118b1903af290ca9cf",
+      "git_blob_sha1": "503bd5cf1fcbe9071f165a8edbd2880f78f7592d"
+    },
+    {
+      "path": "papers/agent-ecology-demand/protocol.json",
+      "bytes": 3462,
+      "sha256": "b191c74558e7518f07758f9fc512fc9fcec6c7748bd51b4c35abaa43958589c0",
+      "git_blob_sha1": "5883a841a019f2a9a6c44c2804c4b3a3c4cce1a3"
+    },
+    {
+      "path": "papers/agent-ecology-demand/references.json",
+      "bytes": 6220,
+      "sha256": "0861b31bf28cdec77ed232af2c99b8c727fa4ddbbb93e2172dd80e36351c7530",
+      "git_blob_sha1": "759a81f7cae36655e1f640859696dea50b06bde3"
+    }
+  ]
+}

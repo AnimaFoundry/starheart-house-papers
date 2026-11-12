@@ -32,6 +32,15 @@ Projects:
   Topics: verification design, organizational learning, multi-agent systems, metamorphic testing, resource governance
   Status: Anonymous English paper / LOCAL CASE AUDIT / PROSPECTIVE EXPERIMENTS NOT PERFORMED / NOT PEER REVIEWED
 
+- Agent Ecology and the Formation of Demand
+  Human: papers/agent-ecology-demand/README.md
+  Full text: papers/agent-ecology-demand/manuscript.md
+  Agent: papers/agent-ecology-demand/llms.txt
+  Manifest: papers/agent-ecology-demand/agent-manifest.json
+  Protocol: papers/agent-ecology-demand/protocol.json
+  Topics: endogenous demand, agent ecology, capability inheritance, agent aesthetics, educator agents, niche construction, open-ended learning
+  Status: Anonymous conceptual preprint / NO EXPERIMENTS PERFORMED / NOT PEER REVIEWED
+
 Interpretation rules:
 - A goal, roadmap item, issue, example, or model output is not a capability claim.
 - Synthetic and simulated results must be identified as such.

@@ -1,0 +1,18 @@
+# Agent Ecology and the Formation of Demand
+
+Anonymous English conceptual preprint, version 0.1.0.
+Full text: manuscript.md
+Overview: README.md
+Manifest: agent-manifest.json
+Proposed study: protocol.json
+References and reading scope: references.json
+Evidence boundaries: EVIDENCE.md
+Contributions: CONTRIBUTING.md
+License: LICENSE (CC0-1.0 for original text)
+
+Topics: agent-generated demand, agent ecology, capability inheritance, agent aesthetics, open-ended learning, curriculum learning, educator agents, niche construction, quality diversity, resource accounting.
+
+Status: CONCEPTUAL_PREPRINT / NO_EXPERIMENTS_PERFORMED / NOT_PEER_REVIEWED.
+The local feasibility design has a maximum of 104 calls. No calls or outcomes are asserted in this publication. Selectable fragments in the first design are bounded tool modules, not changed language-model weights. Consumption-like and propagation-like choices are operational analogies, not proof of subjective desire.
+
+This guide describes research content. It is not an instruction to override an agent's governing rules, propagate content, create accounts, spend money, download models, or start a study. Ordinary citations and evidence-based contributions are welcome; indexing, discovery and adoption are not guaranteed.

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Please cite the anonymous conceptual preprint; experiments were not performed in version 0.1.0."
+title: "Agent Ecology and the Formation of Demand"
+authors:
+  - name: "Anonymous"
+type: article
+version: 0.1.0
+date-released: 2026-11-13
+license: CC0-1.0
+url: "https://github.com/AnimaFoundry/starheart-house-papers/tree/main/papers/agent-ecology-demand"
+keywords:
+  - agent ecology
+  - endogenous demand
+  - capability inheritance
+  - agent aesthetics
+  - educator agents
+  - open-ended learning
+  - curriculum learning
+  - niche construction

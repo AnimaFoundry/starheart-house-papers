@@ -1,0 +1,106 @@
+[
+  {
+    "id": "1",
+    "citation": "Forestier, S., Portelas, R., Mollard, Y., and Oudeyer, P. Y. (2022). Intrinsically Motivated Goal Exploration Processes with Automatic Curriculum Learning. arXiv version 3; accepted at JMLR as listed in the record.",
+    "url": "https://arxiv.org/abs/1708.02190v3",
+    "access_scope": "Primary abstract and intrinsic reward section.",
+    "supports_and_limits": "Goal generation and selection; not evidence of subjective needs.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "2",
+    "citation": "Wang, R., Lehman, J., Clune, J., and Stanley, K. O. (2019). Paired Open-Ended Trailblazer (POET): Endlessly Generating Increasingly Complex and Diverse Learning Environments and Their Solutions. arXiv version 3.",
+    "url": "https://arxiv.org/abs/1901.01753v3",
+    "access_scope": "Primary metadata and abstract.",
+    "supports_and_limits": "Challenge and solution co-generation; not economic additionality.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "3",
+    "citation": "Wang, R., Lehman, J., Rawal, A., Zhi, J., Li, Y., Clune, J., and Stanley, K. O. (2020). Enhanced POET: Open-Ended Reinforcement Learning through Unbounded Invention of Learning Challenges and their Solutions. arXiv version 2.",
+    "url": "https://arxiv.org/abs/2003.08536v2",
+    "access_scope": "Primary metadata and abstract.",
+    "supports_and_limits": "Novel challenges and transfer; not guaranteed perpetual progress.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "4",
+    "citation": "Mouret, J. B., and Clune, J. (2015). Illuminating search spaces by mapping elites. arXiv version 1.",
+    "url": "https://arxiv.org/abs/1504.04909v1",
+    "access_scope": "Primary metadata and abstract.",
+    "supports_and_limits": "Varied high-performing solutions; descriptors remain designer-chosen.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "5",
+    "citation": "Akiba, T., Shing, M., Tang, Y., Sun, Q., and Ha, D. (2025). Evolutionary optimization of model merging recipes. Nature Machine Intelligence, 7, 195-204.",
+    "url": "https://doi.org/10.1038/s42256-024-00975-8",
+    "access_scope": "Primary journal indexed method and limitation excerpts, plus arXiv version 2 metadata.",
+    "supports_and_limits": "Evolutionary parameter and dataflow search is prior art.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "6",
+    "citation": "Yadav, P., Tam, D., Choshen, L., Raffel, C., and Bansal, M. (2023). TIES-Merging: Resolving Interference When Merging Models. NeurIPS 2023; arXiv version 2.",
+    "url": "https://arxiv.org/abs/2306.01708v2",
+    "access_scope": "Primary metadata and abstract.",
+    "supports_and_limits": "Merging interference and sign conflicts.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "7",
+    "citation": "Yu, L., Yu, B., Yu, H., Huang, F., and Li, Y. (2024). Language Models are Super Mario: Absorbing Abilities from Homologous Models as a Free Lunch. ICML, PMLR 235, 57755-57775.",
+    "url": "https://proceedings.mlr.press/v235/yu24p.html",
+    "access_scope": "Primary proceedings abstract and bibliographic record.",
+    "supports_and_limits": "DARE sparsifies fine-tuning deltas, not most base-model weights.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "8",
+    "citation": "Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., and Chen, W. (2021). LoRA: Low-Rank Adaptation of Large Language Models. arXiv version 2.",
+    "url": "https://arxiv.org/abs/2106.09685v2",
+    "access_scope": "Primary abstract and full HTML structure consulted.",
+    "supports_and_limits": "Low-rank weight updates; not whole-model rank compression.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "9",
+    "citation": "Wang, X., Zheng, Y., Wan, Z., and Zhang, M. (2025). SVD-LLM: Truncation-aware Singular Value Decomposition for Large Language Model Compression. ICLR 2025; arXiv version 5.",
+    "url": "https://arxiv.org/abs/2403.07378v5",
+    "access_scope": "Primary abstract, whitening method, and pseudocode.",
+    "supports_and_limits": "Activation-aware compression; no universal 95 percent reduction claim.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "10",
+    "citation": "Molinaro, G., August, D., Perszyk, D., and Collins, A. G. E. (2026). Language Model Goal Selection Differs from Humans' in a Self-Directed Learning Task. arXiv version 3.",
+    "url": "https://arxiv.org/abs/2603.03295v3",
+    "access_scope": "Primary metadata and abstract; full methods not independently reproduced.",
+    "supports_and_limits": "Preprint reports divergent goal selection; local-model behavior remains untested.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "11",
+    "citation": "Qwen Team. Qwen3.5-9B official model card. Accessed 12 November 2026.",
+    "url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+    "access_scope": "Official license and thinking-mode instructions.",
+    "supports_and_limits": "Source model Apache-2.0; actual quantization and runtime need separate validation.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "12",
+    "citation": "Portelas, R., Colas, C., Hofmann, K., and Oudeyer, P. Y. (2020). Teacher algorithms for curriculum learning of Deep RL in continuously parameterized environments. Proceedings of the Conference on Robot Learning, PMLR 100, 835-853.",
+    "url": "https://proceedings.mlr.press/v100/portelas20a.html",
+    "access_scope": "Primary proceedings abstract and bibliographic record.",
+    "supports_and_limits": "ALP-GMM personalizes curricula using learning progress; no economic agent market result.",
+    "experiments_reproduced": false
+  },
+  {
+    "id": "13",
+    "citation": "Odling-Smee, J., Erwin, D., Palkovacs, E., Feldman, M., and Laland, K. N. (2013). Niche construction theory: a practical guide for ecologists. The Quarterly Review of Biology, 88(1), 3-28.",
+    "url": "https://doi.org/10.1086/669266",
+    "access_scope": "Author-institution bibliographic record verified; indexed primary summary consulted, full text not studied.",
+    "supports_and_limits": "Biological analogy only; no factual reliance for software outcomes.",
+    "experiments_reproduced": false
+  }
+]

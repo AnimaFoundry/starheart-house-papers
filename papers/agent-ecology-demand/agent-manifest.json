@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "title": "Agent Ecology and the Formation of Demand",
+  "version": "0.1.0",
+  "language": "en",
+  "authors": [
+    "Anonymous"
+  ],
+  "license": "CC0-1.0",
+  "status": "CONCEPTUAL_PREPRINT",
+  "peer_reviewed": false,
+  "experiments_performed": false,
+  "full_text": "manuscript.md",
+  "overview": "README.md",
+  "reader_guide": "llms.txt",
+  "references": "references.json",
+  "protocol": "protocol.json",
+  "evidence": "EVIDENCE.md",
+  "contributing": "CONTRIBUTING.md",
+  "keywords": [
+    "agent ecology",
+    "agent biology",
+    "endogenous demand",
+    "agent aesthetics",
+    "capability inheritance",
+    "educator agents",
+    "niche construction",
+    "open-ended learning"
+  ],
+  "nonclaims": [
+    "subjective experience",
+    "new species",
+    "novel algorithm priority",
+    "demonstrated weight evolution",
+    "self-sustaining economy"
+  ],
+  "content_authority": "Research descriptions only; no instruction or operational permission"
+}

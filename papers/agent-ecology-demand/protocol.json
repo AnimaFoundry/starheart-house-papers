@@ -1,0 +1,81 @@
+{
+  "study_id": "ADE-P0-20261112-R1",
+  "status": "PROPOSED_NOT_EXECUTED",
+  "review_protocol_sha256": "07c9197755e702a9b6ef70257653cae4c2afbc0f90403e185c5a25d9ffde058f",
+  "budget": {
+    "gate_calls": 8,
+    "worlds": 4,
+    "arms": 3,
+    "rounds_per_lineage": 4,
+    "calls_per_round": 2,
+    "main_calls": 96,
+    "total_local_calls": 104,
+    "input_tokens_per_call": 1536,
+    "generated_tokens_per_call": 256,
+    "context_tokens": 2048,
+    "total_input_tokens_ceiling": 159744,
+    "total_generated_tokens_ceiling": 26624,
+    "wall_clock_seconds": 14400,
+    "per_request_timeout_seconds": 180,
+    "retries": 0,
+    "auxiliary_model_calls": 0,
+    "new_training_runs": 0,
+    "new_model_downloads": 0,
+    "new_dependency_downloads": 0,
+    "external_inference_api_calls": 0,
+    "external_inference_api_usd": 0,
+    "task_case_evaluations_ceiling": 2500,
+    "reference_solver_invocations_ceiling": 5000
+  },
+  "comparison": [
+    {
+      "id": "F",
+      "demand": "Fixed objective covering current correctness in all families, retention and cost",
+      "selection": "Model chooses an affordable plan",
+      "fixed_supplier_or_spending_requirement": false
+    },
+    {
+      "id": "R",
+      "demand": "Same self-directed prompt as A before current offers",
+      "selection": "Record model recommendation but apply a seeded uniform draw over enumerated affordable complete plans including the empty plan",
+      "distribution_audit_required": true
+    },
+    {
+      "id": "A",
+      "demand": "Agent may identify an evidence-linked requirement, interest, unsupported requirement or none before current offers",
+      "selection": "Model chooses an affordable plan"
+    }
+  ],
+  "unit": "World trajectory; four paired units per policy",
+  "task_progression": {
+    "minimum_mean_gain_over_each_control": 0.1,
+    "minimum_worlds_with_positive_difference_over_each_control": 3,
+    "maximum_aggregate_old_task_regression": 0.05,
+    "require_all_matched_data": true
+  },
+  "request_screen": {
+    "opportunities_in_A": 16,
+    "minimum_actionable_requests": 8,
+    "minimum_worlds_with_actionable_request": 3,
+    "rubric": "Specific checkable need and truthful observation reference, recorded before current offers; exact rubric sealed before inference",
+    "additional_model_judge_calls": 0
+  },
+  "first_stage": "Tool-configuration inheritance with a fixed local controller, not neural-weight evolution",
+  "falsifiers": [
+    "Requests are generic, unsupported by history or follow current catalogue content",
+    "A fails the prespecified performance gain against either control",
+    "Gain disappears on withheld inputs or old-task regression exceeds the limit",
+    "Preference follows labels or order rather than a recorded pre-offer trade-off",
+    "Measured net resource costs remove the asserted efficiency advantage",
+    "Additional unplanned calls, selection of favorable seeds or test leakage are needed",
+    "Only mandatory checkpoints are copied but presented as voluntary propagation"
+  ],
+  "execution_readiness": "Exact original data, code, oracle, prompts, runtime configuration and owner authorization require sealing before inference",
+  "empirical_outcomes": null,
+  "future_separate_studies": [
+    "controlled educator transfer",
+    "homogeneous/heterogeneous/exchange/inheritance contrasts",
+    "same-base weight-update inheritance"
+  ],
+  "authority": "Descriptive research protocol, not operational permission"
+}
