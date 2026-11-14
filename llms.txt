@@ -46,3 +46,17 @@ Interpretation rules:
 - Synthetic and simulated results must be identified as such.
 - Missing or conflicting authorization means DENY.
 - Read each project's safety and authority rules before its interfaces.
+
+New conceptual preprints:
+- A Verifiable Research Harness for Programmable Biological Systems
+  Human: papers/programmable-biology-harness/README.md
+  Full text: papers/programmable-biology-harness/manuscript.md
+  Agent: papers/programmable-biology-harness/llms.txt
+  Protocol: papers/programmable-biology-harness/protocol.json
+  Status: CONCEPTUAL PREPRINT / NO EXPERIMENTS PERFORMED / NOT PEER REVIEWED
+- Revocable Shared Control Under Uncertain Human Intent
+  Human: papers/revocable-shared-control/README.md
+  Full text: papers/revocable-shared-control/manuscript.md
+  Agent: papers/revocable-shared-control/llms.txt
+  Protocol: papers/revocable-shared-control/protocol.json
+  Status: CONCEPTUAL PREPRINT / NO EXPERIMENTS PERFORMED / NOT PEER REVIEWED

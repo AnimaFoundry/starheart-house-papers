@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "title": "Revocable Shared Control Under Uncertain Human Intent",
+  "version": "0.1.0",
+  "state": "PROPOSED_NOT_EXECUTABLE",
+  "study_performed": false,
+  "question": "Can uncertainty-dependent assistance with independent revocation reduce wrong-goal completion while meeting task-time and withdrawal requirements?",
+  "scope": "Abstract two-dimensional simulated control only",
+  "baselines": [
+    "direct control",
+    "tuned fixed blend",
+    "most-likely-goal assistance",
+    "belief-based shared autonomy"
+  ],
+  "endpoints": [
+    "wrong-goal completion rate",
+    "success probability by fixed horizon",
+    "revoke success and delay",
+    "residual displacement",
+    "timeouts and modeled collisions"
+  ],
+  "required_before_execution": [
+    "sample size and paired seed list",
+    "development and untouched confirmation partitions",
+    "minimum meaningful benefit and tolerances",
+    "fixed total budgets and complete failure accounting",
+    "interval and multiplicity procedure",
+    "separate explicit execution authorization"
+  ],
+  "human_or_biological_execution_allowed": false,
+  "model_calls_authorized": 0,
+  "training_authorized": false,
+  "legacy_study_budgets_changed": false,
+  "results": [],
+  "source": "manuscript.md",
+  "license": "CC0-1.0 for original specification only"
+}

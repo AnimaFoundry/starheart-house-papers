@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "title": "A Verifiable Research Harness for Programmable Biological Systems",
+  "version": "0.1.0",
+  "state": "PROPOSED_NOT_EXECUTABLE",
+  "study_performed": false,
+  "question": "Can explicit validation allocation and separation of research-policy revision from confirmation improve useful discoveries per total cost over tuned active-learning baselines?",
+  "scope": "Abstract synthetic causal systems only",
+  "baselines": [
+    "random candidate selection",
+    "uncertainty sampling",
+    "Bayesian optimization"
+  ],
+  "endpoints": [
+    "confirmed useful discoveries per total cost",
+    "false acceptance rate",
+    "calibration",
+    "context transfer loss"
+  ],
+  "required_before_execution": [
+    "sample size and paired seed list",
+    "development and untouched confirmation partitions",
+    "minimum meaningful benefit and tolerances",
+    "fixed total budgets and complete failure accounting",
+    "interval and multiplicity procedure",
+    "separate explicit execution authorization"
+  ],
+  "human_or_biological_execution_allowed": false,
+  "model_calls_authorized": 0,
+  "training_authorized": false,
+  "legacy_study_budgets_changed": false,
+  "results": [],
+  "source": "manuscript.md",
+  "license": "CC0-1.0 for original specification only"
+}

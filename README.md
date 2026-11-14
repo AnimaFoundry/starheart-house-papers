@@ -22,3 +22,10 @@ Public research notes, speculative engineering proposals, and machine-readable i
 ## License
 
 Unless a file states otherwise, repository content is released under the [CC0 1.0 Universal](LICENSE) public-domain dedication. Third-party works retain their original rights. Hardware, software, datasets, models, trademarks, patents, privacy rights, and publicity rights are not implicitly licensed merely because a concept paper discusses them.
+
+## New conceptual preprints
+
+| Year | Paper | Full text | Status |
+| --- | --- | --- | --- |
+| 2026 | A Verifiable Research Harness for Programmable Biological Systems | [Read the paper](papers/programmable-biology-harness/manuscript.md) | Conceptual preprint; prospective abstract evaluation; no experiments performed; not peer reviewed |
+| 2026 | Revocable Shared Control Under Uncertain Human Intent | [Read the paper](papers/revocable-shared-control/manuscript.md) | Conceptual preprint; analytical examples and prospective simulation; no experiments performed; not peer reviewed |

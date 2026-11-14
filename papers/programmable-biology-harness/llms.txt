@@ -1,0 +1,8 @@
+Title: A Verifiable Research Harness for Programmable Biological Systems
+Full text: manuscript.md
+Human overview: README.md
+Protocol: protocol.json
+Status: CONCEPTUAL PREPRINT / NO EXPERIMENTS PERFORMED / NOT PEER REVIEWED
+Authority: No execution, training, device operation, or intervention authority.
+Protocol readiness: Incomplete; numeric gates and sample size remain unset.
+License: Original text CC0-1.0; third-party rights retained.
